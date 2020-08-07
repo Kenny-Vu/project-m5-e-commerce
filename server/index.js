@@ -27,7 +27,7 @@ express()
   .use("/", express.static(__dirname + "/"))
 
   // REST endpoints?
-  .get("/gallery", handleGallery)
-  .get("/:itemId", handleGetItem)
+  .get("/items", handleGallery)
+  .get("/items/:itemId", handleGetItem)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
