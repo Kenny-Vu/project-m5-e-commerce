@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div>
-      <div>Hello world</div>
+      <div>Hello world Kenn</div>
       {bacon ? bacon : `...where's my stuff?...`}
     </div>
   );
