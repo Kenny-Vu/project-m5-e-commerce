@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Test from "../templates/FetchItems";
 
 function App() {
   const [bacon, setBacon] = useState(null);
@@ -13,6 +14,7 @@ function App() {
     <div>
       <div>Hello world Kenn</div>
       {bacon ? bacon : `...where's my stuff?...`}
+      <Test/>
     </div>
   );
 }
