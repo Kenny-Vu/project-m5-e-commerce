@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from "react";
-import Test from "../templates/FetchItems";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Gallery from "./Gallery";
+import CheckoutPage from "./CheckoutPage";
 
-function App() {
-  const [bacon, setBacon] = useState(null);
 
-  useEffect(() => {
-    fetch("/bacon")
-      .then((res) => res.json())
-      .then((data) => setBacon(data));
-  }, []);
-
+const App = () => {
   return (
-    <div>
-      <div>Hello world Kenn</div>
-      {bacon ? bacon : `...where's my stuff?...`}
-      <Test/>
-    </div>
+    
+    <Router>
+      <GlobalStyles />
+      <Switch>
+        <Route exact path="/items">
+          <HomePage></HomePage>
+        </Route>
+        <Route exact path="/items/:itemId">
+          <ItemPage></ItemPage>
+        </Route>
+        <Route exact path="/checkout">
+          <CheckoutPage></CheckoutPage>
+        </Route>
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
