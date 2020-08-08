@@ -23,3 +23,9 @@ const itemsReducer = (state = initialState, action)=> {
 }
 
 export default itemsReducer;
+
+// helpers
+
+// get an array with all the store items
+export const getStoreItemArray = (state) => state.items.items;
+export const getItemsStatus = (state) => state.items.status;
