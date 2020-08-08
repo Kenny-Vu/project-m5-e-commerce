@@ -9,6 +9,8 @@ const {
   handleGetItem,
   handleGetCompany,
   handleGetAllCompanies,
+  handleGetAllOrders,
+  handleGetOrder,
 } = require("./handlers");
 
 const PORT = 4000;
@@ -36,5 +38,7 @@ express()
   .get("/items/:itemId", handleGetItem)
   .get("/companies", handleGetAllCompanies)
   .get("/companies/:companyId", handleGetCompany)
+  .get("/orders", handleGetAllOrders)
+  .get("/orders/:orderId", handleGetOrder)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));

@@ -1,5 +1,6 @@
 const items = require("./data/items.json");
 const companies = require("./data/companies.json");
+const orders = require("./data/orders.json");
 
 //SENDS ALL ITEMS IN STORE
 const handleGallery = (req, res) => {
@@ -30,17 +31,40 @@ const handleGetCompany = (req, res) => {
   res.status(200).json(company);
 };
 
-//RECEIVES CLIENT INFOS FROM THE CHECKOUT FORM
-const handleOrder = (req, res) => {
-  const order = req.body; //need to deconstruct once team decides what info
-  //store customer info in data
-  //perhaps do a check to validate info? (e.g. address in a valid country)
-  //CREATE NEW ORDER AND UPDATE ITEM QUANTITY IN ITEMS.JSON?
+// GETS LIST OF ORDERS
+//There's 2 dummy orders for testing at the moment
+//For the moment, I separated each order by Id.
+const handleGetAllOrders = (req, res) => {
+  res.status(200).json(orders);
 };
+const handleGetOrder = (req, res) => {
+  const { orderId } = req.params;
+  const clientOrder = orders.find((order) => {
+    return orderId === order.id;
+  });
+  res.status(200).json(clientOrder);
+};
+
+//IGNORE THIS
+//RECEIVES CLIENT INFOS FROM THE CHECKOUT FORM
+// const handleOrder = (req, res) => {
+//   const order = req.body; //need to deconstruct once team decides what info
+//store customer info in data
+//perhaps do a check to validate info? (e.g. address in a valid country)
+//CREATE NEW ORDER AND UPDATE ITEM QUANTITY IN ITEMS.JSON?
+// };
+// const handleUpdateItemsData = (req, res) => {
+//   const { price } = req.body;
+//   items[0].price = price;
+//   console.log(items[0]);
+//   res.status(200).json(items[0]);
+// };
 
 module.exports = {
   handleGallery,
   handleGetItem,
   handleGetAllCompanies,
   handleGetCompany,
+  handleGetAllOrders,
+  handleGetOrder,
 };
