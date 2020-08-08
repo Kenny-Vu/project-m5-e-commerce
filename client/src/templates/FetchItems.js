@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { requestItems, receiveItems, receiveItemsError } from "../actions";
-import {getStoreItemArray,getItemsStatus} from '../reducers/items-reducer'
+import {getStoreItemArray,getStoreItemArrayStatus} from '../reducers/items-reducer'
 
 // Template, not an actual component // do not use it directly
 // Allows to get a list of all the items in the store from the backend
@@ -13,7 +13,7 @@ import {getStoreItemArray,getItemsStatus} from '../reducers/items-reducer'
 const FetchItems = () => {
   const dispatch = useDispatch();
   const items = useSelector(getStoreItemArray);
-  const status = useSelector(getItemsStatus);
+  const status = useSelector(getStoreItemArrayStatus);
 
   React.useEffect(() => {
     dispatch(requestItems());
