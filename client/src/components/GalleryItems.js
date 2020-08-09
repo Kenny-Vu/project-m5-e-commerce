@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import BuyButton from "./BuyButton";
 
-const GalleryItems = ({ item }) => {
+const GalleryItems = ({ item, galleryLoad }) => {
   return (
     <ItemDiv>
       <ItemName>{item.name}</ItemName>
