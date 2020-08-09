@@ -27,7 +27,8 @@ const Gallery = () => {
 };
 
 const GalleryGrid = styled.div`
-  border: pink dashed 3px;
+  padding: 20px;
+  border: pink dashed 3px; /*just to help with css*/
   display: grid;
   grid: repeat(3, auto) / repeat(5, auto);
   gap: 2em;

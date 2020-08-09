@@ -27,7 +27,6 @@ const Header = () => {
 
 const HeaderWrapper = styled.div`
   border: 1px grey solid;
-  width: 100%;
   margin: 5px;
   justify-content: space-evenly;
   padding: 10px;
@@ -50,14 +49,17 @@ const NavBar = styled.div`
 const SearchInput = styled.input``;
 
 const CartDiv = styled.div`
-  width: 20%;
   border: solid orange 2px;
+  width: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const CartIcon = styled.div`
   border: limegreen 2px solid;
-  width: 100%;
   background-color: white;
+  z-index: 1;
   &:focus {
     outline: none;
   }
@@ -85,17 +87,15 @@ const SearchIcon = styled.div`
 
 const CartJewel = styled.div`
   background-color: red;
-  text-align: center;
-  justify-content: center;
   font-size: 12px;
-  border: purple 2px solid;
   color: white;
-  height: 18px;
-  width: 18px;
+  padding: 5px;
+  border-radius: 50%;
+  margin-left: -10px;
+  margin-top: -25px;
+  justify-content: center;
   z-index: 9;
+  /*display: none;*/ /*write confitional for when items in cart === true, then display*/
 `;
 
 export default Header;
-
-/* cart icon, link to cart.
-/* cart jewel, visibility hidden when 0, gets data from cart and displays cart item #. also link to cart.*/

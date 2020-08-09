@@ -6,38 +6,59 @@ const GalleryItems = ({ item }) => {
   return (
     <ItemDiv>
       <ItemName>{item.name}</ItemName>
-      <ItemImage src={item.imageSrc}></ItemImage>
+      <PictureDiv>
+        <ItemImage src={item.imageSrc}></ItemImage>
+      </PictureDiv>
       <Price>{item.price}</Price>
       <Quantity>Quantity:{item.numInStock}</Quantity>
-      <BuyButton />
+      <ButtonDiv>
+        <BuyButton />
+      </ButtonDiv>
     </ItemDiv>
   );
 };
 
 const ItemDiv = styled.div`
-  border: grey 1px solid;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px grey;
+  border: red 2px solid;
   display: flex;
   flex-direction: column;
-  width: 15%;
   align-items: center;
+  justify-content: center;
 `;
 
-const ItemName = styled.p`
-  text-align: center;
+const ItemName = styled.div`
+  border: orange 2px solid;
+  height: 33%;
+`;
+
+const PictureDiv = styled.div`
+  border: yellow solid 2px;
+  width: 150px;
+  height: 150px;
 `;
 
 const ItemImage = styled.img`
-  height: 15vh;
-  width: 10vw;
+  /* height: 15vh;
+  width: 10vw; */
+  width: 100%;
 `;
 
-const Price = styled.p`
+const Price = styled.div`
+  border: limegreen solid 2px;
   text-align: center;
+  font-weight: bold;
+  font-size: 18px;
 `;
 
-const Quantity = styled.div``;
+const Quantity = styled.div`
+  border: solid blue 2px;
+  font-size: 12px;
+  padding: 5px;
+`;
+
+const ButtonDiv = styled.div`
+  border: fuchsia 2px solid;
+`;
 
 export default GalleryItems;
 
