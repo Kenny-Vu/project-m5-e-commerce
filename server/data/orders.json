@@ -1,6 +1,5 @@
-[
-  {
-    "id": "12345",
+{
+  "12345": {
     "billingInfo": {
       "firstName": "Jonny",
       "lastName": "Quest",
@@ -25,8 +24,7 @@
       "quantity": 2
     }
   },
-  {
-    "id": "6789",
+  "6789": {
     "billingInfo": {
       "firstName": "Justin",
       "lastName": "Thyme",
@@ -51,4 +49,4 @@
       "companyId": 16384
     }
   }
-]
+}

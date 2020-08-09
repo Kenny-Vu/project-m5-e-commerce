@@ -2,7 +2,13 @@ const items = require("./data/items.json");
 const companies = require("./data/companies.json");
 const orders = require("./data/orders.json");
 const { v4: uuidv4 } = require("uuid");
-const { findItems } = require("./helpers");
+
+//Handles 404 page
+const handleFourOhFour = (req, res) => {
+  res
+    .status(404)
+    .json({ message: "Sorry we couldn't find what you were looking for..." });
+};
 
 //SENDS ALL ITEMS IN STORE
 const handleGallery = (req, res) => {
@@ -39,11 +45,12 @@ const handleGetCompany = (req, res) => {
 const handleGetAllOrders = (req, res) => {
   res.status(200).json(orders);
 };
+
+//RETRIEVES SPECIFIC ORDER
 const handleGetOrder = (req, res) => {
   const { orderId } = req.params;
-  const clientOrder = orders.find((order) => {
-    return orderId === order.id;
-  });
+  const clientOrder = orders[`${orderId}`];
+  console.log(clientOrder);
   res.status(200).json(clientOrder);
 };
 
@@ -60,16 +67,6 @@ const handleNewOrder = (req, res) => {
   res.status(201).json({ orders });
 };
 
-//To follow REST principles, we will have to use a PUT method to update the item quantities in items.json
-const handleUpdateItemsData = (req, res) => {
-  const { itemIds, itemsQuantity } = req.body;
-  const itemsToUpdate = findItems(itemIds);
-  itemsToUpdate.forEach((item) => {
-    //loop through itemsQuantity array?
-  });
-  res.status(200).json(items[0]);
-};
-
 module.exports = {
   handleGallery,
   handleGetItem,
@@ -78,4 +75,5 @@ module.exports = {
   handleGetAllOrders,
   handleGetOrder,
   handleNewOrder,
+  handleFourOhFour,
 };
