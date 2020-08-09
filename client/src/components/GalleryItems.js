@@ -15,21 +15,27 @@ const GalleryItems = ({ item }) => {
 };
 
 const ItemDiv = styled.div`
+  border: grey 1px solid;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px grey;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  width: 15%;
   align-items: center;
-  img {
-    height: 15vh;
-    width: 10vw;
-  }
 `;
 
-const ItemName = styled.div``;
+const ItemName = styled.p`
+  text-align: center;
+`;
 
-const ItemImage = styled.img``;
+const ItemImage = styled.img`
+  height: 15vh;
+  width: 10vw;
+`;
 
-const Price = styled.div``;
+const Price = styled.p`
+  text-align: center;
+`;
 
 const Quantity = styled.div``;
 

@@ -27,6 +27,7 @@ const Gallery = () => {
 };
 
 const GalleryGrid = styled.div`
+  border: pink dashed 3px;
   display: grid;
   grid: repeat(3, auto) / repeat(5, auto);
   gap: 2em;
