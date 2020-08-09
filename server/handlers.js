@@ -1,6 +1,8 @@
 const items = require("./data/items.json");
 const companies = require("./data/companies.json");
 const orders = require("./data/orders.json");
+const { v4: uuidv4 } = require("uuid");
+const { findItems } = require("./helpers");
 
 //SENDS ALL ITEMS IN STORE
 const handleGallery = (req, res) => {
@@ -45,20 +47,28 @@ const handleGetOrder = (req, res) => {
   res.status(200).json(clientOrder);
 };
 
-//IGNORE THIS
-//RECEIVES CLIENT INFOS FROM THE CHECKOUT FORM
-// const handleOrder = (req, res) => {
-//   const order = req.body; //need to deconstruct once team decides what info
-//store customer info in data
-//perhaps do a check to validate info? (e.g. address in a valid country)
-//CREATE NEW ORDER AND UPDATE ITEM QUANTITY IN ITEMS.JSON?
-// };
-// const handleUpdateItemsData = (req, res) => {
-//   const { price } = req.body;
-//   items[0].price = price;
-//   console.log(items[0]);
-//   res.status(200).json(items[0]);
-// };
+//RECEIVES CLIENT INFOS FROM THE CHECKOUT FORM AND CREATES A NEW ORDER IN ORDER.JSON
+//Post method
+const handleNewOrder = (req, res) => {
+  const { billingInfo, paymentInfo, orderContent } = req.body;
+  orders.push({
+    id: uuidv4().toString(),
+    billingInfo: billingInfo,
+    paymentInfo: paymentInfo,
+    orderContent: orderContent,
+  });
+  res.status(201).json({ orders });
+};
+
+//To follow REST principles, we will have to use a PUT method to update the item quantities in items.json
+const handleUpdateItemsData = (req, res) => {
+  const { itemIds, itemsQuantity } = req.body;
+  const itemsToUpdate = findItems(itemIds);
+  itemsToUpdate.forEach((item) => {
+    //loop through itemsQuantity array?
+  });
+  res.status(200).json(items[0]);
+};
 
 module.exports = {
   handleGallery,
@@ -67,4 +77,5 @@ module.exports = {
   handleGetCompany,
   handleGetAllOrders,
   handleGetOrder,
+  handleNewOrder,
 };

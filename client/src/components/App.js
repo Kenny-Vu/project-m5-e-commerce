@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Gallery from "./Gallery";
 import CheckoutPage from "./CheckoutPage";
 
+import HomePage from "./HomePage";
+import ItemPage from "./ItemPage";
+import GlobalStyles from "./GlobalStyles";
 
 const App = () => {
   return (
-    
     <Router>
       <GlobalStyles />
       <Switch>

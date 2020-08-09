@@ -2,8 +2,8 @@
   {
     "id": "12345",
     "billingInfo": {
-      "first name": "Jonny",
-      "last name": "Quest",
+      "firstName": "Jonny",
+      "lastName": "Quest",
       "email": "jonnyquest@mail.com",
       "telephone number": "514-310-1010",
       "address": "4689 Jean-Talon",
@@ -28,8 +28,8 @@
   {
     "id": "6789",
     "billingInfo": {
-      "first name": "Justin",
-      "last name": "Thyme",
+      "firstName": "Justin",
+      "lastName": "Thyme",
       "email": "justinthyme@mail.com",
       "telephone number": "514-123-4567",
       "address": "1234 saint-catherine",
