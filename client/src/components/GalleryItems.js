@@ -13,7 +13,13 @@ const GalleryItems = () => {
   );
 };
 
-const Item = styled.div``;
+const ItemDiv = styled.div``;
+
+const ItemName = styled.p``;
+
+const ItemImage = styled.img``;
+
+const Price = styled.p``;
 
 export default GalleryItems;
 
