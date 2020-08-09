@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import BuyButton from "./BuyButton";
 
-const GalleryItems = () => {
+const GalleryItems = ({ item }) => {
   return (
     <ItemDiv>
-      <ItemName>watch</ItemName>
-      <ItemImage></ItemImage>
-      <Price>999$</Price>
+      <ItemName>{item.name}</ItemName>
+      <ItemImage src={item.imageSrc}></ItemImage>
+      <Price>{item.price}</Price>
+      <Quantity>Quantity:{item.numInStock}</Quantity>
       <BuyButton />
     </ItemDiv>
   );
@@ -27,11 +28,16 @@ const ItemName = styled.p`
   text-align: center;
 `;
 
-const ItemImage = styled.img``;
+const ItemImage = styled.img`
+  height: 15vh;
+  width: 10vw;
+`;
 
 const Price = styled.p`
   text-align: center;
 `;
+
+const Quantity = styled.div``;
 
 export default GalleryItems;
 
