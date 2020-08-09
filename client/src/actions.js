@@ -12,6 +12,20 @@ export const receiveItemsError = () => ({
   type: "RECEIVE_ITEMS_ERROR",
 });
 
+// get companies from the backend
+export const requestCompanies = () => ({
+  type: "REQUEST_COMPANIES",
+});
+
+export const receiveCompanies = (items) => ({
+  type: "RECEIVE_COMPANIES",
+  items,
+});
+
+export const receiveCompaniesError = () => ({
+  type: "RECEIVE_COMPANIES_ERROR",
+});
+
 // add and remove items from cart
 export const addItem = (item) => ({
   type: "ADD_ITEM",
@@ -23,7 +37,7 @@ export const removeItem = (item) => ({
   item,
 });
 
-// create and cancel order
+// create and cancel new order
 export const createOrder = (order) => ({
   type: "CREATE_ORDER",
   order,
