@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-component";
 
 // Handles all personal information at checkout name, address, email, etc
 
