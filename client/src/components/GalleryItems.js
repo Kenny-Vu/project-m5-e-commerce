@@ -25,11 +25,7 @@ const ItemDiv = styled.div`
   }
 `;
 
-const ItemName = styled.div``;
-
-const ItemImage = styled.img``;
-
-const Price = styled.div``;
+const Price = styled.div`
   border: grey 1px solid;
   border-radius: 5px;
   box-shadow: 2px 2px 5px grey;
@@ -37,6 +33,7 @@ const Price = styled.div``;
   flex-direction: column;
   width: 15%;
   align-items: center;
+  text-align: center;
 `;
 
 const ItemName = styled.p`
@@ -46,10 +43,6 @@ const ItemName = styled.p`
 const ItemImage = styled.img`
   height: 15vh;
   width: 10vw;
-`;
-
-const Price = styled.p`
-  text-align: center;
 `;
 
 const Quantity = styled.div``;
