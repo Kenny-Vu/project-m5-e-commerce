@@ -1,10 +1,13 @@
+
 import React, { useEffect, useState } from "react";
+
 import styled from "styled-components";
 import Pagination from "./Pagination";
 import GalleryItems from "./GalleryItems";
 
 // displays gallery GalleryItems, postsperpage = amount of items per page
 const Gallery = () => {
+  
   const [handleGallery, setHandleGallery] = React.useState([]);
   const [galleryLoad, setGalleryLoad] = React.useState(true);
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -70,6 +73,7 @@ const Gallery = () => {
 };
 
 const GalleryGrid = styled.div`
+  border: pink dashed 3px;
   display: grid;
   grid: repeat(3, auto) / repeat(5, auto);
   gap: 2em;

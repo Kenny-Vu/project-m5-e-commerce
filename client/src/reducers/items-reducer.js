@@ -25,7 +25,8 @@ const itemsReducer = (state = initialState, action)=> {
 export default itemsReducer;
 
 // helpers
-
+// here the state refers to the global state with all the reducers combined
 // get an array with all the store items
 export const getStoreItemArray = (state) => state.items.items;
+// get the status
 export const getStoreItemArrayStatus = (state) => state.items.status;
