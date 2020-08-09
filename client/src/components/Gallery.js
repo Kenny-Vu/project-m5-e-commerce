@@ -11,6 +11,11 @@ const Gallery = () => {
   );
 };
 
-const GalleryGrid = styled.div``;
+const GalleryGrid = styled.div`
+  border: pink dashed 3px;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+`;
 
 export default Gallery;

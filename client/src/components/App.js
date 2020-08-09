@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Gallery from "./Gallery";
 import CheckoutPage from "./CheckoutPage";
 import GlobalStyles from "./GlobalStyles";
 import HomePage from "./HomePage";
@@ -9,7 +8,7 @@ import ItemPage from "./ItemPage";
 const App = () => {
   return (
     <Router>
-      {/* <GlobalStyles /> */}
+      <GlobalStyles />
       <Switch>
         <Route exact path="/items">
           <HomePage></HomePage>
