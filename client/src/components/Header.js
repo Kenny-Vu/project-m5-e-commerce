@@ -1,12 +1,14 @@
 import React from "react";
-import {  useSelector } from "react-redux";
-import {  getNumItemsCart } from "../reducers/cart-reducer";
+import { useSelector } from "react-redux";
+import { getNumItemsCart } from "../reducers/cart-reducer";
 import styled from "styled-components";
 import Logo from "./Logo";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { GoSearch } from "react-icons/go";
 import { FaRegUser } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+
+import { SearchInput } from "./SearchInput";
 
 const Header = () => {
   const numItemsCart = useSelector(getNumItemsCart);
@@ -101,14 +103,14 @@ const NavBar = styled.div`
   justify-content: center;
 `;
 
-const SearchInput = styled.input`
-  border: none;
-  width: 90%;
-  height: 60%;
-  &:focus {
-    outline: none;
-  }
-`;
+// const SearchInput = styled.input`
+//   border: none;
+//   width: 90%;
+//   height: 60%;
+//   &:focus {
+//     outline: none;
+//   }
+// `;
 
 const IconsDiv = styled.div`
   display: flex;
