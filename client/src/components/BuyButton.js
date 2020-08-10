@@ -1,21 +1,23 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../actions";
 import styled from "styled-components";
 
-const BuyButton = () => {
-  return <Button>Add to Cart</Button>;
+const BuyButton = ({item}) => {
+  const dispatch = useDispatch();
+  return <Button onClick={() => dispatch(addItem(item))}>Add to Cart</Button>;
 };
 
-export default BuyButton;
+
 
 const Button = styled.button`
-  width: 90%;
+  width: 100px;
   outline: none;
   border: none;
-  background-color: pink;
+  background-color: #4848e5d6;
   box-shadow: 2px 2px 5px grey;
   color: white;
-  border-radius: 15px;
-  padding: 5px;
+  border-radius: 5px;
   text-shadow: 1px 1px 4px black;
-  margin-bottom: -15px;
 `;
+export default BuyButton;
