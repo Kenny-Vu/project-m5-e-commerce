@@ -1,15 +1,16 @@
 import React from "react";
-import {  useSelector } from "react-redux";
-import {  getNumItemsCart } from "../reducers/cart-reducer";
+import { useSelector } from "react-redux";
+import { getNumItemsCart } from "../reducers/cart-reducer";
 import styled from "styled-components";
 import Logo from "./Logo";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { GoSearch } from "react-icons/go";
 import { FaRegUser } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 const Header = () => {
-  const numItemsCart = useSelector(getNumItemsCart);
+  const numItemsCart = useSelector(getNumItemsCart); // total number of items in cart
   return (
     <MainHeaderDiv>
       <NameWrapper>
