@@ -8,24 +8,24 @@ import { getCart } from "../reducers/cart-reducer";
 import { getNumItemsCart } from "../reducers/cart-reducer";
 import { removeItem } from "../actions";
 
-const CartItem = ({ id, name, price, quantity }) => {
+const CartItem = ({item }) => {
   const dispatch = useDispatch();
 
   return (
     <TableRow>
       <TableCell>
-        <Quantity>{quantity}</Quantity>
+        <Quantity>{item.quantity}</Quantity>
       </TableCell>
       <TableCell>
-        <Name>{name}</Name>
+        <Name>{item.name}</Name>
       </TableCell>
       <TableCell>
-        <Price>{parseInt(price.split("$")[1]) * quantity + "$"}</Price>
+        <Price>{parseInt(item.price.split("$")[1]) * item.quantity + "$"}</Price>
       </TableCell>
       <TableCell>
         <RemoveButton
           onClick={() => {
-            dispatch(removeItem({ id, name, price, quantity }));
+            dispatch(removeItem(item));
           }}
         >
           <GoTrashcan
@@ -54,6 +54,14 @@ const Quantity = styled.div`
 const RemoveButton = styled.button`
   outline: none;
   background-color: #adbdec;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    transform: translateY(2px);
+  }
 `;
+
 
 export default CartItem;

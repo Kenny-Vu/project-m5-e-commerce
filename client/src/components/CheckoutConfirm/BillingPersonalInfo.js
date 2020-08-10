@@ -1,68 +1,94 @@
 import React from "react";
-import styled from "styled-component";
+import { Label, Input, SectionTitle } from "./FormStyledComponents";
 
-// Handles all personal information at checkout name, address, email, etc
-
-const BillingPersonalInfo = () => {
+// Handles all personal inhtmlFormation at checkout name, address, email, etc
+const BillingPersonalInfo = ({
+  firstName,
+  setFirstName,
+  lastName,
+  setLastName,
+  email,
+  setEmail,
+  phone,
+  setPhone,
+  address,
+  setAddress,
+  zipCode,
+  setZipCode,
+  country,
+  setCountry,
+}) => {
   return (
-    <BillingPersonalInfo>
-      <BillingTitle>Billing Address</BillingTitle>
-      <NameContainer>
-        <span>First Name</span>
-        <span>Last Name</span>
-        <FirstNameInput>
-          <input type="text" />
-        </FirstNameInput>
-        <LastNameInput>
-          <input type="text" />
-        </LastNameInput>
-      </NameContainer>
+    <div>
+      <SectionTitle>Billing Address</SectionTitle>
 
-      <EmailTelephone>
-        <span>Email</span>
-        <span>Telephone</span>
-        <EmailInput>
-          <input type="text" />
-        </EmailInput>
-        <TelephoneInput>
-          <input type="text" />
-        </TelephoneInput>
-      </EmailTelephone>
-
-      <Origin>
-        <span>Address</span>
-        <span>Country</span>
-        <AddressInput>
-          <input type="text" />
-        </AddressInput>
-        <CountryInput>
-          <input type="text" />
-        </CountryInput>
-      </Origin>
-    </BillingPersonalInfo>
+      <Label htmlFor="first-name">First Name</Label>
+      <Input
+        id="first-name"
+        name="first-name"
+        type="text"
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
+        required
+      />
+      <Label htmlFor="last-name">Last Name</Label>
+      <Input
+        id="last-name"
+        type="text"
+        name="last-name"
+        value={lastName}
+        onChange={(e) => setLastName(e.target.value)}
+        required
+      />
+      <Label htmlFor="email">Email</Label>
+      <Input
+        id="email"
+        name="email"
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <Label htmlFor="phone">Telephone number</Label>
+      <Input
+        id="phone"
+        name="phone"
+        type="text"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        required
+      />
+      <Label htmlFor="address">Address</Label>
+      <Input
+        id="address"
+        name="address"
+        type="text"
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
+        required
+      />
+      <Label htmlFor="zip-code">Zip code</Label>
+      <Input
+        id="zip-code"
+        name="zip-code"
+        type="text"
+        value={zipCode}
+        onChange={(e) => setZipCode(e.target.value)}
+        required
+      />
+      <Label htmlFor="country-code">Country</Label>
+      <Input
+        id="country-code"
+        name="country-code"
+        type="text"
+        value={country}
+        onChange={(e) => setCountry(e.target.value)}
+        required
+      />
+    </div>
   );
 };
 
-const BillingPersonalInfo = styled.div``;
 
-const BillingTitle = styled.div``;
-
-const NameContainer = styled.div``;
-
-const FirstNameInput = styled.div``;
-
-const LastNameInput = styled.div``;
-
-const EmailTelephone = styled.div``;
-
-const EmailInput = styled.div``;
-
-const TelephoneInput = styled.div``;
-
-const Origin = styled.div``;
-
-const AddressInput = styled.div``;
-
-const CountryInput = styled.div``;
 
 export default BillingPersonalInfo;

@@ -66,5 +66,3 @@ const ItemCategory = styled.div``;
 const ItemStock = styled.div``;
 
 export default ItemPage;
-
-//import all info from data//

@@ -63,3 +63,16 @@ export const getNumItemsCart = (state) => {
     ? cart.map((item) => item.quantity).reduce((val, acc) => val + acc)
     : 0;
 };
+
+//get total price for cart
+export const getTotalPriceCart = (state) => {
+  const cart = getCart(state);
+
+  let totalprice = 0;
+
+  cart.forEach((item) => {
+    totalprice =
+      parseInt(item.price.split("$")[1]) * item.quantity + totalprice;
+  });
+  return totalprice
+};

@@ -1,5 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+
 import BuyButton from "./BuyButton";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
@@ -7,17 +10,11 @@ import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TextField from "@material-ui/core/TextField";
-import { useSelector } from "react-redux";
-import { getCart } from "../reducers/cart-reducer";
+
+import { getCart, getTotalPriceCart } from "../reducers/cart-reducer";
 
 const Cart = ({ children }) => {
-  const cart = useSelector(getCart);
-  let totalprice = 0;
-
-  cart.forEach((item) => {
-    totalprice =
-      parseInt(item.price.split("$")[1]) * item.quantity + totalprice;
-  });
+  const totalprice = useSelector(getTotalPriceCart);
 
   return (
     <>
@@ -50,7 +47,9 @@ const Cart = ({ children }) => {
       <BottomDiv>
         <Total>Total: {totalprice} $</Total>
         <ButtonDiv>
-          <PurchaseButton>Proceed to checkout </PurchaseButton>
+          <Link to="/checkout">
+            <PurchaseButton>Proceed to checkout </PurchaseButton>
+          </Link>
         </ButtonDiv>
       </BottomDiv>
     </>
@@ -80,6 +79,8 @@ const Edit = styled.p`
 const CartHeader = styled.div`
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  border: solid grey 2px;
 `;
 
 const CartTitle = styled.h2`
@@ -87,6 +88,7 @@ const CartTitle = styled.h2`
   font-weight: bold;
   text-align: center;
   margin-bottom: 30px;
+  border-bottom: 1px solid grey;
 `;
 
 const OrderTitle = styled.div`
@@ -97,7 +99,13 @@ const OrderTitle = styled.div`
 
 const OrderBody = styled.div``;
 
-const BottomDiv = styled.div``;
+const BottomDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-top: 1px solid grey;
+  align-items: center;
+`;
 
 const Total = styled.div`
   text-align: left;
@@ -110,9 +118,10 @@ const ButtonDiv = styled.div``;
 const PurchaseButton = styled.button`
   background-color: #4848e5d6;
   color: white;
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
   margin: 20px;
+  cursor: pointer;
 `;
 
 export default Cart;
