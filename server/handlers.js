@@ -58,19 +58,7 @@ const handleGetOrder = (req, res) => {
 
 //To follow REST principles, we will have to use a PUT method to update the item quantities in items.json
 //The FE should probably fetch this PUT request first to check if there's enough items in storage and then decide what to do next
-////This handler takes an array of objects as an arugment in this format:
-// "orderContent":
-// 	[
-// 		{
-// 			"id": 6543,
-// 			"quantity": 2
-// 		},
-// 		{
-// 			"id": 6545,
-// 			"quantity": 2
-// 		}
-// 	]
-//each object can have more key-value pairs but what's important is the id and the quantity.
+////This handler takes an object of objects as an arugment in the same format as "orderContent" in orders.json
 const handleItemsQuantities = (req, res) => {
   const { orderContent } = req.body;
   const rejectedItems = {};
@@ -78,7 +66,7 @@ const handleItemsQuantities = (req, res) => {
 
   //we need to first change the object into an array so we can loop through it
   const orderContentArray = Object.values(orderContent);
-  //We need to first check if we can actually sell the amount the client orders
+  //We need to also check if we can actually sell the amount the client orders
   const hasEnoughInStorage = orderContentArray.every((element) => {
     return items.some((item) => {
       return item.id === element.id && item.numInStock > element.quantity;
@@ -121,7 +109,6 @@ const handleItemsQuantities = (req, res) => {
       rejectedItems: rejectedItems,
     });
   }
-  console.log(items[0], items[4]);
 };
 
 //RECEIVES CLIENT INFOS FROM THE CHECKOUT FORM AND CREATES A NEW ORDER IN ORDER.JSON
