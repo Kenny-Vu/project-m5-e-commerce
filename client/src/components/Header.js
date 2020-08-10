@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getCart } from "../reducers/cart-reducer";
-import { getNumItemsCart } from "../reducers/cart-reducer";
+import { getNumItemsCart, getCart } from "../reducers/cart-reducer";
 import styled from "styled-components";
 import Logo from "./Logo";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -19,6 +18,7 @@ const Header = () => {
   const [sidebarVisible, setSidebarVisible] = React.useState(false);
   const numItemsCart = useSelector(getNumItemsCart);
   console.log(numItemsCart);
+
   return (
     <MainHeaderDiv>
       <NameWrapper>
