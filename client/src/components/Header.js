@@ -3,32 +3,82 @@ import styled from "styled-components";
 import Logo from "./Logo";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { GoSearch } from "react-icons/go";
-
+import { FaRegUser } from "react-icons/fa";
+import { GiHamburgerMenu } from "react-icons/gi";
 const Header = () => {
   return (
-    <HeaderWrapper>
-      <Logo />
-      <NavBar>
-        <SearchInput></SearchInput>
-        <SearchIcon>
-          <GoSearch style={{ height: "30px", width: "30px" }} />
-        </SearchIcon>
-      </NavBar>
+    <MainHeaderDiv>
+      <NameWrapper>
+        <Logo />
+        <StoreName>NaN Athletics</StoreName>
+      </NameWrapper>
+      <HeaderWrapper>
+        <NavBar>
+          <SearchInput placeholder="Search"></SearchInput>
+          <SearchIcon>
+            <GoSearch style={{ height: "25px", width: "25px" }} />
+          </SearchIcon>
+        </NavBar>
 
-      <CartDiv>
-        <CartIcon>
-          <AiOutlineShoppingCart style={{ height: "30px", width: "30px" }} />
-        </CartIcon>
-        <CartJewel>2</CartJewel>
-      </CartDiv>
-    </HeaderWrapper>
+        <IconsDiv>
+          <CartIcon>
+            <AiOutlineShoppingCart
+              style={{
+                height: "30px",
+                width: "30px",
+                color: "grey",
+                margin: "10px",
+              }}
+            />
+          </CartIcon>
+          <CartJewel>2</CartJewel>
+          <FaRegUser
+            style={{
+              height: "25px",
+              width: "25px",
+              color: "grey",
+              margin: "10px",
+            }}
+          />
+          <GiHamburgerMenu
+            style={{
+              height: "25px",
+              width: "25px",
+              color: "grey",
+              margin: "10px",
+            }}
+          />
+        </IconsDiv>
+      </HeaderWrapper>
+    </MainHeaderDiv>
   );
 };
 
+const MainHeaderDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const NameWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const StoreName = styled.h1`
+  font-family: "Faster One", cursive;
+  font-size: 90px;
+  text-align: center;
+  color: #adbdec;
+  text-shadow: 1px 1px 3px #931f09;
+  margin: 5px 70px;
+`;
+
 const HeaderWrapper = styled.div`
-  border: 1px grey solid;
+  height: 60px;
+  border-top: 1px grey solid;
   margin: 5px;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -46,18 +96,22 @@ const NavBar = styled.div`
   justify-content: center;
 `;
 
-const SearchInput = styled.input``;
+const SearchInput = styled.input`
+  border: none;
+  width: 90%;
+  height: 60%;
+  &:focus {
+    outline: none;
+  }
+`;
 
-const CartDiv = styled.div`
-  border: solid orange 2px;
-  width: 50px;
+const IconsDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
 `;
 
 const CartIcon = styled.div`
-  border: limegreen 2px solid;
   background-color: white;
   z-index: 1;
   &:focus {
@@ -72,7 +126,6 @@ const CartIcon = styled.div`
 `;
 
 const SearchIcon = styled.div`
-  border: limegreen 2px solid;
   background-color: white;
   &:focus {
     outline: none;

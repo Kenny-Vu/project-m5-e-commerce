@@ -7,11 +7,11 @@ const Logo = () => {
 };
 
 const LogoImage = styled.img`
-  width: 10%;
-  height: 10%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  max-height: 100px;
+  max-width: 200px;
+
+  margin-right: 50px;
+  margin-left: -300px;
 `;
 
 export default Logo;

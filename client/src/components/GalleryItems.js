@@ -5,15 +5,15 @@ import BuyButton from "./BuyButton";
 const GalleryItems = ({ item }) => {
   return (
     <ItemDiv>
-      <ItemName>{item.name}</ItemName>
       <PictureDiv>
         <ItemImage src={item.imageSrc}></ItemImage>
       </PictureDiv>
-      <Price>{item.price}</Price>
-      <Quantity>Quantity:{item.numInStock}</Quantity>
-      <ButtonDiv>
+      <ItemName>{item.name}</ItemName>
+      <BottomDiv>
+        <Price>{item.price}</Price>
+        <Quantity>Quantity:{item.numInStock}</Quantity>
         <BuyButton />
-      </ButtonDiv>
+      </BottomDiv>
     </ItemDiv>
   );
 };
@@ -24,15 +24,21 @@ const ItemDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 10px 10px 0px 10px;
 `;
 
 const ItemName = styled.div`
   border: orange 2px solid;
   height: 33%;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  line-height: 1.5;
 `;
 
 const PictureDiv = styled.div`
   border: yellow solid 2px;
+  margin-bottom: 10px;
   width: 150px;
   height: 150px;
 `;
@@ -40,7 +46,8 @@ const PictureDiv = styled.div`
 const ItemImage = styled.img`
   /* height: 15vh;
   width: 10vw; */
-  width: 100%;
+  max-width: 150px;
+  max-height: 150px;
 `;
 
 const Price = styled.div`
@@ -56,8 +63,13 @@ const Quantity = styled.div`
   padding: 5px;
 `;
 
-const ButtonDiv = styled.div`
-  border: fuchsia 2px solid;
+const BottomDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  border: 2px blue dotted;
+  margin: 5px 0px;
 `;
 
 export default GalleryItems;

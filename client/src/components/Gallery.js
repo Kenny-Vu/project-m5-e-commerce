@@ -27,11 +27,16 @@ const Gallery = () => {
 };
 
 const GalleryGrid = styled.div`
-  padding: 20px;
-  border: pink dashed 3px; /*just to help with css*/
+  padding: 20px 40px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 25%));
+  grid-gap: 16px;
+  border: 2px fuchsia solid;
+
+  /* border: pink dashed 3px; 
   display: grid;
   grid: repeat(3, auto) / repeat(5, auto);
-  gap: 2em;
+  gap: 2em; */
 `;
 
 export default Gallery;
