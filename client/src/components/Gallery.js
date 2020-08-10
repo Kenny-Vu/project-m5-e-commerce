@@ -1,13 +1,10 @@
-
 import React, { useEffect, useState } from "react";
-
 import styled from "styled-components";
 import Pagination from "./Pagination";
 import GalleryItems from "./GalleryItems";
 
 // displays gallery GalleryItems, postsperpage = amount of items per page
 const Gallery = () => {
-  
   const [handleGallery, setHandleGallery] = React.useState([]);
   const [galleryLoad, setGalleryLoad] = React.useState(true);
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -51,33 +48,43 @@ const Gallery = () => {
   }
 
   return (
-    <>
+    <ParentDiv>
       {galleryLoad === false ? (
-        <GalleryGrid>
-          {currentPosts.map((item) => (
-            <GalleryItems key={item.id} item={item} galleryLoad={galleryLoad} />
-          ))}
+        <>
+          <GalleryGrid>
+            {currentPosts.map((item) => (
+              <GalleryItems
+                key={item.id}
+                item={item}
+                galleryLoad={galleryLoad}
+              />
+            ))}
+          </GalleryGrid>
           <Pagination
             postsPerPage={postsPerPage}
             totalPosts={test.length}
             paginate={paginate}
           />
-        </GalleryGrid>
+        </>
       ) : (
         <>
           <div>Loading</div>
         </>
       )}
-    </>
+    </ParentDiv>
   );
 };
+
+const ParentDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const GalleryGrid = styled.div`
   padding: 20px 40px;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 25%));
   grid-gap: 16px;
-  border: 2px fuchsia solid;
 
   /* border: pink dashed 3px; 
   display: grid;

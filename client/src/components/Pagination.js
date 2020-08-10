@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   const pageNumbers = [];
@@ -8,18 +9,42 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   }
 
   return (
-    <nav>
-      <ul className="pagination">
+    <PageNav>
+      <Pages>
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
-            <a onClick={() => paginate(number)} href="" className="pagelink">
+            <PageNum
+              onClick={() => paginate(number)}
+              href=""
+              className="pagelink"
+            >
               {number}
-            </a>
+            </PageNum>
           </li>
         ))}
-      </ul>
-    </nav>
+      </Pages>
+    </PageNav>
   );
 };
+
+const Pages = styled.ul`
+  list-style-type: none;
+  display: flex;
+`;
+
+const PageNum = styled.a`
+  padding: 5px;
+  margin: 5px;
+`;
+
+const PageNav = styled.div`
+  display: flex;
+  flex-direction: row;
+  border-top: grey solid 1px;
+  justify-content: center;
+  padding: 15px 0px;
+  margin-left: 40px;
+  margin-right: 40px;
+`;
 
 export default Pagination;
