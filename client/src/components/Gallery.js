@@ -83,7 +83,7 @@ const ParentDiv = styled.div`
 const GalleryGrid = styled.div`
   padding: 20px 40px;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 25%));
+  grid-template-columns: repeat(5, minmax(0, 20%));
   grid-gap: 16px;
 
   /* border: pink dashed 3px; 

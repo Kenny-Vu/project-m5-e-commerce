@@ -19,16 +19,16 @@ const GalleryItems = ({ item }) => {
 };
 
 const ItemDiv = styled.div`
-  border: red 2px solid;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 10px 10px 0px 10px;
+  border-radius: 12px;
+  box-shadow: 1px 1px 5px #3f51b59c;
 `;
 
 const ItemName = styled.div`
-  border: orange 2px solid;
   height: 33%;
   text-align: center;
   margin-top: 5px;
@@ -37,7 +37,6 @@ const ItemName = styled.div`
 `;
 
 const PictureDiv = styled.div`
-  border: yellow solid 2px;
   margin-bottom: 10px;
   width: 150px;
   height: 150px;
@@ -51,14 +50,13 @@ const ItemImage = styled.img`
 `;
 
 const Price = styled.div`
-  border: limegreen solid 2px;
   text-align: center;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
+  color: #646963;
 `;
 
 const Quantity = styled.div`
-  border: solid blue 2px;
   font-size: 12px;
   padding: 5px;
 `;
@@ -68,8 +66,9 @@ const BottomDiv = styled.div`
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
-  border: 2px blue dotted;
+  border-top: 1px grey solid;
   margin: 5px 0px;
+  padding-top: 5px;
 `;
 
 export default GalleryItems;

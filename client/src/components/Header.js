@@ -57,6 +57,7 @@ const Header = () => {
 const MainHeaderDiv = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 const NameWrapper = styled.div`
@@ -78,7 +79,7 @@ const HeaderWrapper = styled.div`
   height: 60px;
   border-top: 1px grey solid;
   margin: 5px;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -140,11 +141,14 @@ const SearchIcon = styled.div`
 
 const CartJewel = styled.div`
   background-color: red;
+  line-height: 1.6;
+  text-align: center;
   font-size: 12px;
   color: white;
-  padding: 5px;
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
-  margin-left: -10px;
+  margin-left: -20px;
   margin-top: -25px;
   justify-content: center;
   z-index: 9;
