@@ -1,5 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+
 import BuyButton from "./BuyButton";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
@@ -7,17 +10,11 @@ import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TextField from "@material-ui/core/TextField";
-import { useSelector } from "react-redux";
-import { getCart } from "../reducers/cart-reducer";
+
+import { getCart, getTotalPriceCart } from "../reducers/cart-reducer";
 
 const Cart = ({ children }) => {
-  const cart = useSelector(getCart);
-  let totalprice = 0;
-
-  cart.forEach((item) => {
-    totalprice =
-      parseInt(item.price.split("$")[1]) * item.quantity + totalprice;
-  });
+  const totalprice = useSelector(getTotalPriceCart);
 
   return (
     <>
@@ -50,7 +47,9 @@ const Cart = ({ children }) => {
       <BottomDiv>
         <Total>Total: {totalprice} $</Total>
         <ButtonDiv>
-          <PurchaseButton>Proceed to checkout </PurchaseButton>
+          <Link to="/checkout">
+            <PurchaseButton>Proceed to checkout </PurchaseButton>
+          </Link>
         </ButtonDiv>
       </BottomDiv>
     </>

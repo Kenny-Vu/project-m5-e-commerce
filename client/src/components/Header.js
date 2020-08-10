@@ -76,10 +76,7 @@ const Header = () => {
                 console.log(item);
                 return (
                   <CartItem
-                    id={item.id}
-                    name={item.name}
-                    price={item.price}
-                    quantity={item.quantity}
+                    item={item}
                   />
                 );
               })}
