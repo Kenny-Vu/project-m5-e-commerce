@@ -14,6 +14,9 @@ const orderReducer = (state = initialState, action) => {
               }
           }
       }
+      case 'CANCEL_ORDER' : {
+        return initialState
+    }
     default:
       return state;
   }

@@ -21,18 +21,31 @@ const ORDER = {
     },
   },
 };
+
+const sendOrder = () => {
+  fetch("/order",
+    {
+      method: "POST",
+      body: ORDER,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+};
 const SendOrder = () => {
   const dispatch = useDispatch();
   const cart = useSelector(getCart);
 
-  ORDER['123']["orderContent"] = cart
-  console.log(ORDER)
+  ORDER["123"]["orderContent"] = cart;
+  console.log(ORDER);
   return (
     <>
       <AddItemToCart />
       <button onClick={() => dispatch(createOrder(ORDER))}>
         Add Cart to order
       </button>
+      <button onClick={() => sendOrder(ORDER)}>Send order</button>
     </>
   );
 };

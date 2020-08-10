@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
+
 import CheckoutPage from "./CheckoutPage";
 import GlobalStyles from "./GlobalStyles";
 import HomePage from "./HomePage";
