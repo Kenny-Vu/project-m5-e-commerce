@@ -7,7 +7,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import CheckoutPage from "./CheckoutPage";
+import CheckoutPage from "./CheckoutConfirm/CheckoutPage";
 import GlobalStyles from "./GlobalStyles";
 import HomePage from "./HomePage";
 import ItemPage from "./ItemPage";

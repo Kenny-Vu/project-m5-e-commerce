@@ -1,28 +1,27 @@
 import React from "react";
-import styled from "styled-component";
+import styled from "styled-components";
+import { useSelector } from "react-redux";
+import CartItem from "../CartItem";
+import { getCart } from "../../reducers/cart-reducer";
 
 const OrderContents = () => {
+  const cart = useSelector(getCart);
   return (
-    <OrderContents>
+    <OrderWrapper>
       <OrderTitle>Order Contents</OrderTitle>
-      <OrderItems>
-        {/* To Do */}
-        {/* Hold all the items added to cart here */}
-      </OrderItems>
+      {cart.map((item) => (
+        <CartItem item={item} />
+      ))}
       <OrderTotal>total:</OrderTotal>
-      <ConfirmButton>Place Order</ConfirmButton>
-    </OrderContents>
+    </OrderWrapper>
   );
 };
 
-const OrderContents = styled.div``;
+const OrderWrapper = styled.div``;
 
 const OrderTitle = styled.div``;
 
-const OrderItems = styled.div``;
 
 const OrderTotal = styled.div``;
-
-const ConfirmButton = styled.button``;
 
 export default OrderContents;
