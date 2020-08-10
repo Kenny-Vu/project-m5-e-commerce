@@ -1,77 +1,52 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import styled from "styled-components";
 import Pagination from "./Pagination";
 import GalleryItems from "./GalleryItems";
 
 // displays gallery GalleryItems, postsperpage = amount of items per page
 const Gallery = () => {
-  const [handleGallery, setHandleGallery] = React.useState([]);
-  const [galleryLoad, setGalleryLoad] = React.useState(true);
-  const [currentPage, setCurrentPage] = React.useState(1);
-  console.log("-----CurrentPage--------", currentPage);
-  const [postsPerPage, setPostsPerPage] = React.useState(30);
-  console.log(handleGallery);
+  const [handleGallery, setHandleGallery] = React.useState([]); // array of items currently displayed in gallery
+  const [postsPerPage, setPostsPerPage] = React.useState(30); //postPerpage could be change by user. We will see
 
-  const test = handleGallery;
-  console.log(test);
-  console.log(test.length);
+  const query = new URLSearchParams(useLocation().search);
+  const currentPage = query.get("pg") ? query.get("pg") : 1;
 
   React.useEffect(() => {
     fetch("/items")
       .then((res) => res.json())
       .then((data) => {
         setHandleGallery(data);
-        setGalleryLoad(false);
       })
       .catch((err) => console.log("Error", err));
   }, []);
 
-  let currentPosts = [];
-
   // pageData handles displaying only 30items at a time on the page
-  function pageData() {
-    if (handleGallery) {
-      const indexOfLastPost = currentPage * postsPerPage;
-      const indexOfFirstPost = indexOfLastPost - postsPerPage;
-      return (currentPosts = handleGallery.slice(
-        indexOfFirstPost,
-        indexOfLastPost
-      ));
+  function pageData(item, index) {
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    if (index >= indexOfFirstPost && index < indexOfLastPost) {
+      return item;
     }
   }
 
-  pageData();
-
-  function paginate(pageNumber) {
-    console.log("-----paginate------", pageNumber);
-    return setCurrentPage(pageNumber);
-  }
-
   return (
-    <ParentDiv>
-      {galleryLoad === false ? (
-        <>
-          <GalleryGrid>
-            {currentPosts.map((item) => (
-              <GalleryItems
-                key={item.id}
-                item={item}
-                galleryLoad={galleryLoad}
-              />
-            ))}
-          </GalleryGrid>
-          <Pagination
-            postsPerPage={postsPerPage}
-            totalPosts={test.length}
-            paginate={paginate}
-          />
-        </>
-      ) : (
-        <>
-          <div>Loading</div>
-        </>
-      )}
-    </ParentDiv>
+    <>
+      <GalleryGrid>
+        {handleGallery.length > 0 ? (
+          handleGallery
+            .filter(pageData)
+            .map((item) => <GalleryItems key={item.id} item={item} />)
+        ) : (
+          <p>loading</p>
+        )}
+      </GalleryGrid>
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={handleGallery.length}
+      />
+    </>
   );
 };
 

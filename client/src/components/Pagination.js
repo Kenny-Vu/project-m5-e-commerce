@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+const Pagination = ({ postsPerPage, totalPosts, paginate, location }) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
@@ -13,13 +14,9 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
       <Pages>
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
-            <PageNum
-              onClick={() => paginate(number)}
-              href=""
-              className="pagelink"
-            >
+            <PageLink to={`/items?pg=${number}`} className="pagelink">
               {number}
-            </PageNum>
+            </PageLink>
           </li>
         ))}
       </Pages>
@@ -32,7 +29,7 @@ const Pages = styled.ul`
   display: flex;
 `;
 
-const PageNum = styled.a`
+const PageLink = styled(Link)`
   padding: 5px;
   margin: 5px;
 `;
