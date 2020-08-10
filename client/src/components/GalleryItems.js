@@ -50,6 +50,10 @@ const ItemName = styled.div`
   margin-top: 5px;
   margin-bottom: 5px;
   line-height: 1.5;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const PictureDiv = styled.div`
@@ -63,6 +67,10 @@ const ItemImage = styled.img`
   width: 10vw; */
   max-width: 150px;
   max-height: 150px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 const Price = styled.div`

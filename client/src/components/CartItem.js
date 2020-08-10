@@ -54,6 +54,13 @@ const Quantity = styled.div`
 const RemoveButton = styled.button`
   outline: none;
   background-color: #adbdec;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    transform: translateY(2px);
+  }
 `;
 
 
