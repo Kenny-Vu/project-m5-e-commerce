@@ -1,10 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-<<<<<<< HEAD
-import { getNumItemsCart } from "../reducers/cart-reducer";
-=======
 import { getNumItemsCart, getCart } from "../reducers/cart-reducer";
->>>>>>> 4d2d61c9993949b792e7e409bc610f53e980ee71
 import styled from "styled-components";
 import Logo from "./Logo";
 import { AiOutlineShoppingCart } from "react-icons/ai";
