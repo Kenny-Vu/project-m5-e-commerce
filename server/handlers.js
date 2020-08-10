@@ -2,7 +2,7 @@ const items = require("./data/items.json");
 const companies = require("./data/companies.json");
 const orders = require("./data/orders.json");
 const { v4: uuidv4 } = require("uuid");
-
+const { searchById } = require("./helpers");
 //Handles 404 page
 const handleFourOhFour = (req, res) => {
   res
@@ -12,17 +12,23 @@ const handleFourOhFour = (req, res) => {
 
 //SENDS ALL ITEMS IN STORE
 const handleGallery = (req, res) => {
-  res.status(200).json(items);
+  const itemList = items.map((item) => {
+    const company = searchById(item.companyId, companies);
+    item.companyName = company.name;
+    return item; //The BE sends back each item with the companyName added so FE won't have to look for it
+  });
+  res.status(200).json(itemList);
 };
 
 //SENDS INFO ABOUT A SPECIFIC ITEM USING THE ITEM'S ID
 const handleGetItem = (req, res) => {
   const itemId = req.params.itemId;
-  const item = items.find((itemObj) => {
-    //converting the itemId string from the url params to a number
-    return itemObj.id === Number(itemId);
-  });
-  res.status(200).json(item);
+  const item = searchById(itemId, items);
+  const company = searchById(item.companyId, companies);
+  //Creates a new copy of the item but with the company name added
+  const itemToSend = { ...item, companyName: company.name };
+
+  res.status(200).json(itemToSend);
 };
 //SENDS ALL COMPANIES INFO
 const handleGetAllCompanies = (req, res) => {
@@ -32,10 +38,7 @@ const handleGetAllCompanies = (req, res) => {
 //SENDS INFO ABOUT A SPECIFIC COMPANY USING COMPANY ID
 const handleGetCompany = (req, res) => {
   const companyId = req.params.companyId;
-  const company = companies.find((companyObj) => {
-    //converting the itemId string from the url params to a number
-    return companyObj.id === Number(companyId);
-  });
+  const company = searchById(companyId, companies);
   res.status(200).json(company);
 };
 
