@@ -11,6 +11,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Drawer } from "@material-ui/core";
 import CartItem from "./CartItem";
 import Cart from "./Cart";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const cart = useSelector(getCart);
@@ -22,7 +23,9 @@ const Header = () => {
     <MainHeaderDiv>
       <NameWrapper>
         <Logo />
-        <StoreName>NaN Athletics</StoreName>
+        <LinkDiv to="/items">
+          <StoreName>NaN Athletics</StoreName>
+        </LinkDiv>
       </NameWrapper>
       <HeaderWrapper>
         <NavBar>
@@ -87,6 +90,10 @@ const Header = () => {
     </MainHeaderDiv>
   );
 };
+
+const LinkDiv = styled(Link)`
+  text-decoration: none;
+`;
 
 const MainHeaderDiv = styled.div`
   display: flex;
