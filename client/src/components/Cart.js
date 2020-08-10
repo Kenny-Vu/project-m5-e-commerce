@@ -123,6 +123,17 @@ const PurchaseButton = styled.button`
   border-radius: 5px;
   margin: 20px;
   cursor: pointer;
+  text-shadow: 1px 1px 3px black;
+  box-shadow: 2px 2px 5px grey;
+  &:hover {
+    background-color: blue;
+  }
+  &:active {
+    transform: translateY(2px);
+  }
+  &:focus {
+    outline: none;
+  }
 `;
 
 export default Cart;

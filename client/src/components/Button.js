@@ -10,8 +10,11 @@ const Button = styled.button`
   border-radius: 5px;
   text-shadow: 1px 1px 4px black;
   cursor: pointer;
-  &:hover{
-      background-color:#4848e5
+  &:hover {
+    background-color: #4848e5;
+  }
+  &:active {
+    transform: translateY(2px);
   }
 `;
 
