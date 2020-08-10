@@ -8,7 +8,8 @@ const GlobalStyles = createGlobalStyle`
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+    vertical-align: baseline;
+    font-family: Arial, Helvetica, sans-serif;
 }`;
 
 export default GlobalStyles;

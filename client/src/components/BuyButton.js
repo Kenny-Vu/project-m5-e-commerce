@@ -11,15 +11,13 @@ const BuyButton = ({item}) => {
 
 
 const Button = styled.button`
-  width: 90%;
+  width: 100px;
   outline: none;
   border: none;
-  background-color: pink;
+  background-color: #4848e5d6;
   box-shadow: 2px 2px 5px grey;
   color: white;
-  border-radius: 15px;
-  padding: 5px;
+  border-radius: 5px;
   text-shadow: 1px 1px 4px black;
-  margin-bottom: -15px;
 `;
 export default BuyButton;

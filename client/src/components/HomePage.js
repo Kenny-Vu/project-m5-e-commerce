@@ -12,9 +12,6 @@ const HomePage = () => {
   );
 };
 
-const GalleryPage = styled.div`
-  width: 100%;
-  border: fuchsia 3px solid;
-`;
+const GalleryPage = styled.div``;
 
 export default HomePage;

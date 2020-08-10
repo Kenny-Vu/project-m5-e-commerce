@@ -43,7 +43,7 @@ const Gallery = () => {
   }
 
   return (
-    <>
+    <ParentDiv>
       {items ? (
         <div>
           <GalleryGrid>
@@ -56,15 +56,25 @@ const Gallery = () => {
       ) : (
         <p>{status}</p>
       )}
-    </>
+    </ParentDiv>
   );
 };
 
+const ParentDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const GalleryGrid = styled.div`
-  border: pink dashed 3px;
+  padding: 20px 40px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 20%));
+  grid-gap: 16px;
+
+  /* border: pink dashed 3px; 
   display: grid;
   grid: repeat(3, auto) / repeat(5, auto);
-  gap: 2em;
+  gap: 2em; */
 `;
 
 export default Gallery;

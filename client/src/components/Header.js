@@ -3,31 +3,81 @@ import styled from "styled-components";
 import Logo from "./Logo";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { GoSearch } from "react-icons/go";
-
+import { FaRegUser } from "react-icons/fa";
+import { GiHamburgerMenu } from "react-icons/gi";
 const Header = () => {
   return (
-    <HeaderWrapper>
-      <Logo />
-      <NavBar>
-        <SearchInput></SearchInput>
-        <SearchIcon>
-          <GoSearch style={{ height: "30px", width: "30px" }} />
-        </SearchIcon>
-      </NavBar>
+    <MainHeaderDiv>
+      <NameWrapper>
+        <Logo />
+        <StoreName>NaN Athletics</StoreName>
+      </NameWrapper>
+      <HeaderWrapper>
+        <NavBar>
+          <SearchInput placeholder="Search"></SearchInput>
+          <SearchIcon>
+            <GoSearch style={{ height: "25px", width: "25px" }} />
+          </SearchIcon>
+        </NavBar>
 
-      <CartDiv>
-        <CartIcon>
-          <AiOutlineShoppingCart style={{ height: "30px", width: "30px" }} />
-        </CartIcon>
-        <CartJewel>2</CartJewel>
-      </CartDiv>
-    </HeaderWrapper>
+        <IconsDiv>
+          <CartIcon>
+            <AiOutlineShoppingCart
+              style={{
+                height: "30px",
+                width: "30px",
+                color: "grey",
+                margin: "10px",
+              }}
+            />
+          </CartIcon>
+          <CartJewel>2</CartJewel>
+          <FaRegUser
+            style={{
+              height: "25px",
+              width: "25px",
+              color: "grey",
+              margin: "10px",
+            }}
+          />
+          <GiHamburgerMenu
+            style={{
+              height: "25px",
+              width: "25px",
+              color: "grey",
+              margin: "10px",
+            }}
+          />
+        </IconsDiv>
+      </HeaderWrapper>
+    </MainHeaderDiv>
   );
 };
 
+const MainHeaderDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const NameWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const StoreName = styled.h1`
+  font-family: "Faster One", cursive;
+  font-size: 90px;
+  text-align: center;
+  color: #adbdec;
+  text-shadow: 1px 1px 3px #931f09;
+  margin: 5px 70px;
+`;
+
 const HeaderWrapper = styled.div`
-  border: 1px grey solid;
-  width: 100%;
+  height: 60px;
+  border-top: 1px grey solid;
   margin: 5px;
   justify-content: space-evenly;
   padding: 10px;
@@ -47,17 +97,24 @@ const NavBar = styled.div`
   justify-content: center;
 `;
 
-const SearchInput = styled.input``;
+const SearchInput = styled.input`
+  border: none;
+  width: 90%;
+  height: 60%;
+  &:focus {
+    outline: none;
+  }
+`;
 
-const CartDiv = styled.div`
-  width: 20%;
-  border: solid orange 2px;
+const IconsDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const CartIcon = styled.div`
-  border: limegreen 2px solid;
-  width: 100%;
   background-color: white;
+  z-index: 1;
   &:focus {
     outline: none;
   }
@@ -70,7 +127,6 @@ const CartIcon = styled.div`
 `;
 
 const SearchIcon = styled.div`
-  border: limegreen 2px solid;
   background-color: white;
   &:focus {
     outline: none;
@@ -85,17 +141,18 @@ const SearchIcon = styled.div`
 
 const CartJewel = styled.div`
   background-color: red;
+  line-height: 1.6;
   text-align: center;
-  justify-content: center;
   font-size: 12px;
-  border: purple 2px solid;
   color: white;
-  height: 18px;
-  width: 18px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  margin-left: -20px;
+  margin-top: -25px;
+  justify-content: center;
   z-index: 9;
+  /*display: none;*/ /*write confitional for when items in cart === true, then display*/
 `;
 
 export default Header;
-
-/* cart icon, link to cart.
-/* cart jewel, visibility hidden when 0, gets data from cart and displays cart item #. also link to cart.*/

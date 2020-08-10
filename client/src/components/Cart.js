@@ -6,7 +6,6 @@ import CartItem from "./CartItem";
 const Cart = () => {
   return (
     <CartWrapper>
-      {/* <CartItem /> write logic for how many are rendered */}
       <BuyButton>Click me!</BuyButton>
     </CartWrapper>
   );

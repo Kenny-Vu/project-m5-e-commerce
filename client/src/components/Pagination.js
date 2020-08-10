@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const Pagination = ({ postsPerPage, totalPosts, paginate, location }) => {
@@ -9,18 +10,38 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, location }) => {
   }
 
   return (
-    <nav>
-      <ul className="pagination">
+    <PageNav>
+      <Pages>
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
-            <Link to={`/items?pg=${number}`} className="pagelink">
+            <PageLink to={`/items?pg=${number}`} className="pagelink">
               {number}
-            </Link>
+            </PageLink>
           </li>
         ))}
-      </ul>
-    </nav>
+      </Pages>
+    </PageNav>
   );
 };
+
+const Pages = styled.ul`
+  list-style-type: none;
+  display: flex;
+`;
+
+const PageLink = styled(Link)`
+  padding: 5px;
+  margin: 5px;
+`;
+
+const PageNav = styled.div`
+  display: flex;
+  flex-direction: row;
+  border-top: grey solid 1px;
+  justify-content: center;
+  padding: 15px 0px;
+  margin-left: 40px;
+  margin-right: 40px;
+`;
 
 export default Pagination;
