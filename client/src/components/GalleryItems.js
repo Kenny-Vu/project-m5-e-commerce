@@ -25,11 +25,25 @@ const ItemDiv = styled.div`
   }
 `;
 
-const ItemName = styled.div``;
+const Price = styled.div`
+  border: grey 1px solid;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px grey;
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  align-items: center;
+  text-align: center;
+`;
 
-const ItemImage = styled.img``;
+const ItemName = styled.p`
+  text-align: center;
+`;
 
-const Price = styled.div``;
+const ItemImage = styled.img`
+  height: 15vh;
+  width: 10vw;
+`;
 
 const Quantity = styled.div``;
 
