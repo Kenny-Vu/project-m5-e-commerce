@@ -13,6 +13,7 @@ const {
   handleGetOrder,
   handleNewOrder,
   handleFourOhFour,
+  handleItemsQuantities,
 } = require("./handlers");
 
 const PORT = 4000;
@@ -35,14 +36,20 @@ express()
   .use(express.urlencoded({ extended: false }))
   .use("/", express.static(__dirname + "/"))
 
-  // REST endpoints?
+  //Endpoints
+  //GET
   .get("/items", handleGallery)
   .get("/items/:itemId", handleGetItem)
   .get("/companies", handleGetAllCompanies)
   .get("/companies/:companyId", handleGetCompany)
   .get("/orders", handleGetAllOrders)
   .get("/orders/:orderId", handleGetOrder)
-  .post("/orders", handleNewOrder)
   .get("*", handleFourOhFour)
+
+  //POST
+  .post("/orders", handleNewOrder) //creates a new order
+
+  //PUT
+  .put("/items", handleItemsQuantities) // updates items.json
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
