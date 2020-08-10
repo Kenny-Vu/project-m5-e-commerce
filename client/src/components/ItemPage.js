@@ -1,18 +1,54 @@
 import React from "react";
 import styled from "styled-components";
+import BuyButton from "./BuyButton";
 
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { requestItems, receiveItems, receiveItemsError } from "../actions";
+import {
+  getStoreItemArray,
+  getStoreItemArrayStatus,
+} from "../reducers/items-reducer";
+
+// displays single item page
 const ItemPage = () => {
-  return (
-    <ItemProfile>
-      <ItemName>Items Page test</ItemName>
-      <ItemPicture></ItemPicture>
-      <ItemPrice></ItemPrice>
-      <BodyLocation></BodyLocation>
-      <ItemCategory></ItemCategory>
-      <ItemStock></ItemStock>
-      <button> Return to Gallery</button>
-    </ItemProfile>
-  );
+  const dispatch = useDispatch();
+  const items = useSelector(getStoreItemArray);
+  const status = useSelector(getStoreItemArrayStatus);
+
+  const { itemId } = useParams();
+
+  React.useEffect(() => {
+    dispatch(requestItems());
+    fetch(`/items/${itemId}`)
+      .then((res) =>
+        res.json().then((data) => {
+          dispatch(receiveItems(data));
+        })
+      )
+      .catch((err) => dispatch(receiveItemsError()));
+  }, []);
+
+  console.log(items);
+  console.log(items);
+
+  if (items) {
+    return (
+      <ItemProfile>
+        <ItemName>{items.name}</ItemName>
+        <ItemPicture src={items.imageSrc}></ItemPicture>
+        <ItemPrice>{items.price}</ItemPrice>
+        <BodyLocation>{items.body_location}</BodyLocation>
+        <ItemCategory>{items.category}</ItemCategory>
+        <ItemStock>{items.numInStock} in Stock</ItemStock>
+        <BuyButton></BuyButton>
+        <button>
+          <a href="/items">return to Gallery</a>
+        </button>
+      </ItemProfile>
+    );
+  }
+  return <div>loading</div>;
 };
 
 const ItemProfile = styled.div``;
