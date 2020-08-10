@@ -1,13 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import BuyButton from "./BuyButton";
-import CartItem from "./CartItem";
 
-const Cart = () => {
+const Cart = ({ children }) => {
   return (
-    <CartWrapper>
-      <BuyButton>Click me!</BuyButton>
-    </CartWrapper>
+    <>
+      <CartHeader>Your Cart</CartHeader>
+      <OrderHeader>Order Summary</OrderHeader>
+      <OrderBody>{children}</OrderBody>
+      <Total>Price: $$$</Total>
+      <button></button>
+    </>
   );
 };
 

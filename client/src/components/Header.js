@@ -1,5 +1,5 @@
 import React from "react";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getCart } from "../reducers/cart-reducer";
 import styled from "styled-components";
 import Logo from "./Logo";
@@ -7,9 +7,15 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { GoSearch } from "react-icons/go";
 import { FaRegUser } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Drawer } from "@material-ui/core";
+import CartItem from "./CartItem";
+import Cart from "./Cart";
 
 const Header = () => {
   const cart = useSelector(getCart);
+  const [sidebarVisible, setSidebarVisible] = React.useState(false);
+
+  console.log(cart);
   return (
     <MainHeaderDiv>
       <NameWrapper>
@@ -25,7 +31,7 @@ const Header = () => {
         </NavBar>
 
         <IconsDiv>
-          <CartIcon>
+          <CartIcon onClick={() => setSidebarVisible(!sidebarVisible)}>
             <AiOutlineShoppingCart
               style={{
                 height: "30px",
@@ -53,6 +59,22 @@ const Header = () => {
             }}
           />
         </IconsDiv>
+        <Drawer anchor="right" open={sidebarVisible}>
+          <SideBar>
+            <Cart>
+              { .map((item) => {
+                return (
+                  <CartItem
+                    name={item.name}
+                    price={item.price}
+                    quantity={item.quantity}
+                  />
+                );
+              })}
+            </Cart>
+          </SideBar>
+          <CloseButton onClick={() => setSidebarVisible(false)}>X</CloseButton>
+        </Drawer>
       </HeaderWrapper>
     </MainHeaderDiv>
   );
@@ -157,6 +179,14 @@ const CartJewel = styled.div`
   justify-content: center;
   z-index: 9;
   /*display: none;*/ /*write confitional for when items in cart === true, then display*/
+`;
+
+const CloseButton = styled.button``;
+
+const SideBar = styled.div`
+  width: 400px;
+  height: 100%;
+  background-color: lightblue;
 `;
 
 export default Header;
