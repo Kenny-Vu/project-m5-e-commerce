@@ -1,15 +1,23 @@
 import React from "react";
-import {  useSelector } from "react-redux";
-import {  getNumItemsCart } from "../reducers/cart-reducer";
+import { useSelector } from "react-redux";
+import { getCart } from "../reducers/cart-reducer";
+import { getNumItemsCart } from "../reducers/cart-reducer";
 import styled from "styled-components";
 import Logo from "./Logo";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { GoSearch } from "react-icons/go";
 import { FaRegUser } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Drawer } from "@material-ui/core";
+import CartItem from "./CartItem";
+import Cart from "./Cart";
 
 const Header = () => {
+  const cart = useSelector(getCart);
+  console.log(cart);
+  const [sidebarVisible, setSidebarVisible] = React.useState(false);
   const numItemsCart = useSelector(getNumItemsCart);
+  console.log(numItemsCart);
   return (
     <MainHeaderDiv>
       <NameWrapper>
@@ -25,7 +33,7 @@ const Header = () => {
         </NavBar>
 
         <IconsDiv>
-          <CartIcon>
+          <CartIcon onClick={() => setSidebarVisible(!sidebarVisible)}>
             <AiOutlineShoppingCart
               style={{
                 height: "30px",
@@ -53,6 +61,28 @@ const Header = () => {
             }}
           />
         </IconsDiv>
+        <Drawer anchor="right" open={sidebarVisible}>
+          <SideBar>
+            <CloseButtonDiv>
+              <CloseButton onClick={() => setSidebarVisible(false)}>
+                X
+              </CloseButton>
+            </CloseButtonDiv>
+            <Cart>
+              {cart.map((item) => {
+                console.log(item);
+                return (
+                  <CartItem
+                    id={item.id}
+                    name={item.name}
+                    price={item.price}
+                    quantity={item.quantity}
+                  />
+                );
+              })}
+            </Cart>
+          </SideBar>
+        </Drawer>
       </HeaderWrapper>
     </MainHeaderDiv>
   );
@@ -157,6 +187,29 @@ const CartJewel = styled.div`
   justify-content: center;
   z-index: 9;
   /*display: none;*/ /*write confitional for when items in cart === true, then display*/
+`;
+
+const CloseButtonDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  background-color: #adbdec;
+`;
+
+const CloseButton = styled.button`
+  width: 30px;
+  height: 30px;
+  align-self: right;
+  background-color: #adbdec;
+`;
+
+const SideBar = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 100%;
+  background-color: #adbdec;
+  justify-content: space-between;
+  padding: 0px 15px;
 `;
 
 export default Header;
