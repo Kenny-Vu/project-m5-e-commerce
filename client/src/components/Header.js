@@ -224,7 +224,7 @@ const SideBar = styled.div`
   display: flex;
   flex-direction: column;
   width: 500px;
-  height: 10000%;
+  height: 300%;
   background-color: #adbdec;
   justify-content: space-between;
   padding: 0px 15px;
