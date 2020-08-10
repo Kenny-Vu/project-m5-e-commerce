@@ -1,14 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 import BuyButton from "./BuyButton";
+import { useHistory } from "react-router-dom";
 
 const GalleryItems = ({ item }) => {
+  const history = useHistory();
+
+  // function for onclick of item to redirect to the specific items page
+  function navigateSingleItem(e) {
+    e.stopPropagation();
+    history.push(`/items/${item.id}`);
+  }
+
   return (
     <ItemDiv>
-      <PictureDiv>
+      <PictureDiv tabIndex="0" onClick={navigateSingleItem}>
         <ItemImage src={item.imageSrc}></ItemImage>
       </PictureDiv>
-      <ItemName>{item.name}</ItemName>
+      <ItemName tabIndex="0" onClick={navigateSingleItem}>
+        {item.name}
+      </ItemName>
       <BottomDiv>
         <Price>{item.price}</Price>
         {item.numInStock >= 1 ? (
