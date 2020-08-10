@@ -20,7 +20,7 @@ const CartItem = ({item }) => {
         <Name>{item.name}</Name>
       </TableCell>
       <TableCell>
-        <Price>{parseInt(item.price.split("$")[1]) * item.quantity + "$"}</Price>
+        <Price>{Number(item.price.split("$")[1]).toFixed(2) * item.quantity + "$"}</Price>
       </TableCell>
       <TableCell>
         <RemoveButton

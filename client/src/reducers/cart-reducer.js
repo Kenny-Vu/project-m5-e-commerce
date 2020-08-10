@@ -72,7 +72,7 @@ export const getTotalPriceCart = (state) => {
 
   cart.forEach((item) => {
     totalprice =
-      parseFloat(item.price.split("$")[1]) * item.quantity + totalprice;
+      Number(item.price.split("$")[1]) * item.quantity + totalprice;
   });
-  return totalprice
+  return totalprice.toFixed(2)
 };
