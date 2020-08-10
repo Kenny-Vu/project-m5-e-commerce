@@ -80,6 +80,8 @@ const Edit = styled.p`
 const CartHeader = styled.div`
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  border: solid grey 2px;
 `;
 
 const CartTitle = styled.h2`
@@ -87,6 +89,7 @@ const CartTitle = styled.h2`
   font-weight: bold;
   text-align: center;
   margin-bottom: 30px;
+  border-bottom: 1px solid grey;
 `;
 
 const OrderTitle = styled.div`
@@ -97,7 +100,13 @@ const OrderTitle = styled.div`
 
 const OrderBody = styled.div``;
 
-const BottomDiv = styled.div``;
+const BottomDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-top: 1px solid grey;
+  align-items: center;
+`;
 
 const Total = styled.div`
   text-align: left;
@@ -110,7 +119,7 @@ const ButtonDiv = styled.div``;
 const PurchaseButton = styled.button`
   background-color: #4848e5d6;
   color: white;
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
   margin: 20px;
   cursor: pointer;

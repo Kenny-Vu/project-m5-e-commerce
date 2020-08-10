@@ -205,6 +205,8 @@ const CloseButtonDiv = styled.div`
   display: flex;
   justify-content: flex-end;
   background-color: #adbdec;
+  margin-top: 10px;
+  font-size: 20px;
 `;
 
 const CloseButton = styled.button`
@@ -223,6 +225,7 @@ const SideBar = styled.div`
   background-color: #adbdec;
   justify-content: space-between;
   padding: 0px 15px;
+  border: solid grey 5px;
 `;
 
 export default Header;
