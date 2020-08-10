@@ -1,6 +1,6 @@
 import React from "react";
 import {  useSelector } from "react-redux";
-import { getCart } from "../reducers/cart-reducer";
+import {  getNumItemsCart } from "../reducers/cart-reducer";
 import styled from "styled-components";
 import Logo from "./Logo";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -9,7 +9,7 @@ import { FaRegUser } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const Header = () => {
-  const cart = useSelector(getCart);
+  const numItemsCart = useSelector(getNumItemsCart);
   return (
     <MainHeaderDiv>
       <NameWrapper>
@@ -35,7 +35,7 @@ const Header = () => {
               }}
             />
           </CartIcon>
-          <CartJewel>{cart.length}</CartJewel>
+          <CartJewel>{numItemsCart}</CartJewel>
           <FaRegUser
             style={{
               height: "25px",

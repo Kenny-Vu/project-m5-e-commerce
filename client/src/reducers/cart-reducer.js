@@ -54,3 +54,12 @@ export const getCart = (state) => {
 };
 // get the status
 export const getCartStatus = (state) => state.cart.status;
+
+// get total number of items in cart
+export const getNumItemsCart = (state) => {
+  const cart = getCart(state);
+
+  return cart.length > 0
+    ? cart.map((item) => item.quantity).reduce((val, acc) => val + acc)
+    : 0;
+};
