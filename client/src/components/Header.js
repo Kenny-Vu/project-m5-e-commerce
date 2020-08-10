@@ -149,6 +149,7 @@ const IconsDiv = styled.div`
 const CartIcon = styled.div`
   background-color: white;
   z-index: 1;
+  cursor: pointer;
   &:focus {
     outline: none;
   }
@@ -157,11 +158,14 @@ const CartIcon = styled.div`
   }
   &:hover {
     background-color: #d1c1f6;
+    border-radius: 50%;
   }
 `;
 
 const SearchIcon = styled.div`
   background-color: white;
+  padding: 8px;
+  cursor: pointer;
   &:focus {
     outline: none;
   }
@@ -170,6 +174,7 @@ const SearchIcon = styled.div`
   }
   &:hover {
     background-color: #d1c1f6;
+    border-radius: 50%;
   }
 `;
 
@@ -200,6 +205,7 @@ const CloseButton = styled.button`
   height: 30px;
   align-self: right;
   background-color: #adbdec;
+  cursor: pointer;
 `;
 
 const SideBar = styled.div`

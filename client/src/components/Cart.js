@@ -113,6 +113,7 @@ const PurchaseButton = styled.button`
   padding: 5px;
   border-radius: 5px;
   margin: 20px;
+  cursor: pointer;
 `;
 
 export default Cart;
