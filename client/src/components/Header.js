@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { getCart } from "../reducers/cart-reducer";
+import { useSelector } from "react-redux";
+import { getNumItemsCart } from "../reducers/cart-reducer";
 import styled from "styled-components";
 import Logo from "./Logo";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -12,10 +14,10 @@ import CartItem from "./CartItem";
 import Cart from "./Cart";
 
 const Header = () => {
-  const cart = useSelector(getCart);
+  // const cart = useSelector(getCart);
   const [sidebarVisible, setSidebarVisible] = React.useState(false);
-
-  console.log(cart);
+  const numItemsCart = useSelector(getNumItemsCart);
+  console.log(numItemsCart);
   return (
     <MainHeaderDiv>
       <NameWrapper>
@@ -41,7 +43,7 @@ const Header = () => {
               }}
             />
           </CartIcon>
-          <CartJewel>{cart.length}</CartJewel>
+          <CartJewel>{numItemsCart}</CartJewel>
           <FaRegUser
             style={{
               height: "25px",
@@ -62,7 +64,7 @@ const Header = () => {
         <Drawer anchor="right" open={sidebarVisible}>
           <SideBar>
             <Cart>
-              { .map((item) => {
+              {numItemsCart.map((item) => {
                 return (
                   <CartItem
                     name={item.name}

@@ -1,14 +1,10 @@
-//Write helper functions here that could potentially be reused
+//Helper functions here that could potentially be reused
 
 const items = require("./data/items.json");
 
-//function to find items using Ids and accepts array of ids as an argument
-//could be used to refactor code
-//difference is that it returns and array of items
-const findItems = (itemIdArray) => {
-  return itemIdArray.map((id) => {
-    return items.find((itemObj) => {
-      return itemObj.id === id;
-    });
-  });
+//function to find specific item or company by passing the id and the array of objects as arguments(e.g. --> searchById(item.id,items))
+const searchById = (id, array) => {
+  return array.find((element) => element.id === Number(id));
 };
+
+module.exports = { searchById };
