@@ -17,7 +17,7 @@ const GalleryItems = ({ item }) => {
           <Quantity>Out of stock</Quantity>
         )}
 
-        <BuyButton />
+        <BuyButton item={item} />
       </BottomDiv>
     </ItemDiv>
   );
