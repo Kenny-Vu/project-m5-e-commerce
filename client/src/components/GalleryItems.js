@@ -9,7 +9,7 @@ const GalleryItems = ({ item }) => {
       <ItemImage src={item.imageSrc}></ItemImage>
       <Price>{item.price}</Price>
       <Quantity>Quantity:{item.numInStock}</Quantity>
-      <BuyButton />
+      <BuyButton item={item}/>
     </ItemDiv>
   );
 };

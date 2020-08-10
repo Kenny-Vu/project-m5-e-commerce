@@ -1,11 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../actions";
 import styled from "styled-components";
 
-const BuyButton = () => {
-  return <Button>Add to Cart</Button>;
+const BuyButton = ({item}) => {
+  const dispatch = useDispatch();
+  return <Button onClick={() => dispatch(addItem(item))}>Add to Cart</Button>;
 };
 
-export default BuyButton;
+
 
 const Button = styled.button`
   width: 90%;
@@ -19,3 +22,4 @@ const Button = styled.button`
   text-shadow: 1px 1px 4px black;
   margin-bottom: -15px;
 `;
+export default BuyButton;
