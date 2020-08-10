@@ -13,8 +13,8 @@
       "expDate": "10/22",
       "CVC": "123"
     },
-    "orderContent": [
-      {
+    "orderContent": {
+      "6543": {
         "name": "Barska GB12166 Fitness Watch with Heart Rate Monitor",
         "price": "$49.99",
         "body_location": "Wrist",
@@ -24,7 +24,7 @@
         "companyId": 19962,
         "quantity": 2
       },
-      {
+      "6547": {
         "name": "Casio WS220 Solar Runner Digital Wrist Watch; Navy Blue",
         "price": "$39.99",
         "body_location": "Wrist",
@@ -34,7 +34,7 @@
         "companyId": 13334,
         "quantity": 1
       }
-    ]
+    }
   },
   "6789": {
     "billingInfo": {
@@ -50,8 +50,8 @@
       "expDate": "08/23",
       "CVC": "456"
     },
-    "orderContent": [
-      {
+    "orderContent": {
+      "6544": {
         "name": "Belkin GS5 Sport Fit Armband, Black F8M918B1C00",
         "price": "$24.99",
         "body_location": "Arms",
@@ -61,6 +61,6 @@
         "quantity": 4,
         "companyId": 16384
       }
-    ]
+    }
   }
 }

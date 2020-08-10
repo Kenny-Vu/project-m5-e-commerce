@@ -53,7 +53,6 @@ const handleGetAllOrders = (req, res) => {
 const handleGetOrder = (req, res) => {
   const { orderId } = req.params;
   const clientOrder = orders[`${orderId}`];
-  console.log(clientOrder);
   res.status(200).json(clientOrder);
 };
 
@@ -74,10 +73,13 @@ const handleGetOrder = (req, res) => {
 //each object can have more key-value pairs but what's important is the id and the quantity.
 const handleItemsQuantities = (req, res) => {
   const { orderContent } = req.body;
-  const rejectedItems = [];
-  const approvedItems = [];
+  const rejectedItems = {};
+  const approvedItems = {};
+
+  //we need to first change the object into an array so we can loop through it
+  const orderContentArray = Object.values(orderContent);
   //We need to first check if we can actually sell the amount the client orders
-  const hasEnoughInStorage = orderContent.every((element) => {
+  const hasEnoughInStorage = orderContentArray.every((element) => {
     return items.some((item) => {
       return item.id === element.id && item.numInStock > element.quantity;
     });
@@ -85,14 +87,14 @@ const handleItemsQuantities = (req, res) => {
   //If there's enough in storage then update the numInStorage in items.json
   if (hasEnoughInStorage) {
     items.forEach((item) => {
-      orderContent.forEach((itemToUpdate) => {
+      orderContentArray.forEach((itemToUpdate) => {
         if (item.id === itemToUpdate.id) {
           item.numInStock -= itemToUpdate.quantity;
-          approvedItems.push({
+          approvedItems[`${item.id}`] = {
             itemId: item.id,
             newNumInStock: item.numInStock,
             amountOrdered: itemToUpdate.quantity,
-          });
+          };
         }
       });
     });
@@ -104,13 +106,13 @@ const handleItemsQuantities = (req, res) => {
     //if there's not enough in storage then notify the FE
   } else {
     items.forEach((item) => {
-      orderContent.forEach((itemToUpdate) => {
+      orderContentArray.forEach((itemToUpdate) => {
         if (item.id === itemToUpdate.id) {
-          rejectedItems.push({
+          rejectedItems[`${item.id}`] = {
             itemId: item.id,
             numInStock: item.numInStock,
             amountOrdered: itemToUpdate.quantity,
-          });
+          };
         }
       });
     });
@@ -119,6 +121,7 @@ const handleItemsQuantities = (req, res) => {
       rejectedItems: rejectedItems,
     });
   }
+  console.log(items[0], items[4]);
 };
 
 //RECEIVES CLIENT INFOS FROM THE CHECKOUT FORM AND CREATES A NEW ORDER IN ORDER.JSON
