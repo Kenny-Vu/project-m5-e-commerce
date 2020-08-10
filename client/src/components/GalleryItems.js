@@ -11,8 +11,13 @@ const GalleryItems = ({ item }) => {
       <ItemName>{item.name}</ItemName>
       <BottomDiv>
         <Price>{item.price}</Price>
-        <Quantity>Quantity:{item.numInStock}</Quantity>
-        <BuyButton item={item}/>
+        {item.numInStock >= 1 ? (
+          <Quantity> {item.numInStock} in stock</Quantity>
+        ) : (
+          <Quantity>Out of stock</Quantity>
+        )}
+
+        <BuyButton item={item} />
       </BottomDiv>
     </ItemDiv>
   );
