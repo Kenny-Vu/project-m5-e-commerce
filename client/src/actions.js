@@ -51,3 +51,10 @@ export const orderCompletionError = (order) => ({
   type: "ORDER_COMPLETION_ERROR",
   order,
 });
+
+//KENNY-TEST
+export const searchItem = (search, results) => ({
+  type: "SEARCH_ITEM",
+  search,
+  results,
+});
