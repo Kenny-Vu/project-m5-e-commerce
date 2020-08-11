@@ -2,26 +2,27 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import CartItem from "../CartItem";
-import { getCart } from "../../reducers/cart-reducer";
+import { getCart, getTotalPriceCart } from "../../reducers/cart-reducer";
+import { SectionTitle } from "./FormStyledComponents";
 
 const OrderContents = () => {
   const cart = useSelector(getCart);
+  const totalprice = useSelector(getTotalPriceCart);
   return (
     <OrderWrapper>
-      <OrderTitle>Order Contents</OrderTitle>
-      {cart.map((item) => (
-        <CartItem item={item} />
+      <SectionTitle>Order Contents</SectionTitle>
+      {cart.map((item, index) => (
+        <CartItem key={index} item={item} />
       ))}
-      <OrderTotal>total:</OrderTotal>
+      <OrderTotal>Total: {totalprice} $</OrderTotal>
     </OrderWrapper>
   );
 };
 
 const OrderWrapper = styled.div``;
 
-const OrderTitle = styled.div``;
-
-
-const OrderTotal = styled.div``;
+const OrderTotal = styled.div`
+  font-weight: bold;
+`;
 
 export default OrderContents;

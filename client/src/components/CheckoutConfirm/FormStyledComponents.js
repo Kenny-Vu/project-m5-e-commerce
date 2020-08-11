@@ -6,10 +6,10 @@ export const Input = styled.input`
   border-radius: 4px;
   padding: 0 4px;
   display: block;
-  width: 400px;
   min-width: 200px;
   margin-bottom: 10px;
   box-sizing:border-box;
+  width:100%;
 `;
 
 export const Label = styled.label`
@@ -22,10 +22,9 @@ export const Select = styled.select`
   border-radius: 4px;
   padding: 0 4px;
   display: block;
-  width: 400px;
   min-width: 200px;
   margin-bottom: 10px;
-
+  width:100%;
 ` 
 
 export const SectionTitle = styled.h2`

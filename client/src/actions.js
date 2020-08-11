@@ -37,13 +37,17 @@ export const removeItem = (item) => ({
   item,
 });
 
-// create and cancel new order
-export const createOrder = (order) => ({
-  type: "CREATE_ORDER",
+// post order to backend
+export const postOrder = (order) => ({
+  type: "POST_ORDER",
   order,
 });
 
-export const cancelOrder = (order) => ({
-  type: "CANCEL_ORDER",
+export const completeOrder = () => ({
+  type: "COMPLETE_ORDER",
+});
+
+export const orderCompletionError = (order) => ({
+  type: "ORDER_COMPLETION_ERROR",
   order,
 });

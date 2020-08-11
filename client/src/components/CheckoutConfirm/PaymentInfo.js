@@ -14,7 +14,7 @@ const PaymentInfo = ({
   cardType,
   setCardType,
 }) => {
-  console.log(month, year);
+
   return (
     <PaymentWrapper>
       <SectionTitle>PaymentMethod</SectionTitle>
@@ -94,11 +94,5 @@ const PaymentInfo = ({
 };
 
 const PaymentWrapper = styled.div``;
-
-const PaymentTitle = styled.div``;
-
-const CardType = styled.div``;
-
-const CardTypeDropDown = styled.div``;
 
 export default PaymentInfo;
