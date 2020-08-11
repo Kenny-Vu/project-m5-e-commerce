@@ -15,10 +15,8 @@ import { SearchInput } from "./SearchInput";
 
 const Header = () => {
   const cart = useSelector(getCart);
-  console.log(cart);
   const [sidebarVisible, setSidebarVisible] = React.useState(false);
   const numItemsCart = useSelector(getNumItemsCart);
-  console.log(numItemsCart);
 
   return (
     <MainHeaderDiv>

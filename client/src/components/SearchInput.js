@@ -8,15 +8,15 @@ export const SearchInput = () => {
   const [userInput, setUserInput] = React.useState("");
   //We'll probably have access to the item list by using useSelector
   const itemList = useSelector((state) => {
-    return Object.values(state).map((item) => item.name);
+    return (
+      state.items.items && Object.values(state.items.items).map((item) => item)
+    );
     //creates array from values of state
     //creates new array of items
   });
-
   //Logic for searchBar during an onChange event
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
-    console.log(userInput);
   };
 
   const handleInputSubmit = (event) => {
@@ -39,7 +39,10 @@ export const SearchInput = () => {
     <SearchBar
       placeholder="Search"
       value={userInput}
-      onChange={(event) => handleUserInput(event)}
+      onChange={(event) => {
+        handleUserInput(event);
+      }}
+      onKeyPress={(event) => handleInputSubmit(event)}
     ></SearchBar>
   );
 };
