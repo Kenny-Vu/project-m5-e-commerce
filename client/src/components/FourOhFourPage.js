@@ -18,7 +18,6 @@ const FourOhFourPage = () => {
 
   return (
     <>
-      start()
       <Light>
         <LightCircle></LightCircle>
         <LightCone></LightCone>
