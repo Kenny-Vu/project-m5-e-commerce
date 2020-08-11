@@ -3,58 +3,61 @@ import styled from "styled-components";
 import BuyButton from "./BuyButton";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { requestItems, receiveItems, receiveItemsError } from "../actions";
-import {
-  getStoreItemArray,
-  getStoreItemArrayStatus,
-} from "../reducers/items-reducer";
 import Header from "./Header";
+import {
+  requestCurrItem,
+  receiveCurrItem,
+  receiveCurrItemError,
+} from "../actions";
+import {
+  getcurrentItem,
+  getCurrentItemStatus,
+} from "../reducers/currItem-reducer";
 
 // displays single item page
 const ItemPage = () => {
   const dispatch = useDispatch();
-  const items = useSelector(getStoreItemArray);
-  const status = useSelector(getStoreItemArrayStatus);
+  const currItem = useSelector(getcurrentItem);
+  const status = useSelector(getCurrentItemStatus);
 
   const { itemId } = useParams();
 
   React.useEffect(() => {
-    dispatch(requestItems());
+    dispatch(requestCurrItem());
     fetch(`/items/${itemId}`)
       .then((res) =>
         res.json().then((data) => {
-          dispatch(receiveItems(data));
+          console.log(data);
+          return dispatch(receiveCurrItem(data));
         })
       )
-      .catch((err) => dispatch(receiveItemsError()));
+      .catch((err) => dispatch(receiveCurrItemError()));
   }, []);
 
-  console.log(items);
-  console.log(items);
-
-  if (items) {
+  if (currItem) {
     return (
+
       <>
         <Header />
 
         <MegaWrapper>
           <Wrapper>
-            <ItemName>{items.name}</ItemName>
+            <ItemName>{currItem.name}</ItemName>
           </Wrapper>
           <ItemProfile>
             <ImageDiv>
-              <ItemPicture src={items.imageSrc}></ItemPicture>
+              <ItemPicture src={currItem.imageSrc}></ItemPicture>
             </ImageDiv>
 
             <DescriptionDiv>
               <DescriptionHeader>Item Description</DescriptionHeader>
-              <ItemCategory>Category: {items.category}</ItemCategory>
+              <ItemCategory>Category: {currItem.category}</ItemCategory>
               <BodyLocation>
                 This item is designed to be worn on your{" "}
-                {items.body_location.toLowerCase()}.
+                {currItem.body_location.toLowerCase()}.
               </BodyLocation>
-              <ItemStock>{items.numInStock} in stock</ItemStock>
-              <ItemPrice>{items.price}</ItemPrice>
+              <ItemStock>{currItem.numInStock} in stock</ItemStock>
+              <ItemPrice>{currItem.price}</ItemPrice>
               <ButtonDiv>
                 <BuyButton></BuyButton>
               </ButtonDiv>
@@ -63,9 +66,10 @@ const ItemPage = () => {
           <BackButton href="/items"> return to Gallery </BackButton>
         </MegaWrapper>
       </>
+
     );
   }
-  return <div>loading</div>;
+  return <div>{status}</div>;
 };
 
 const MegaWrapper = styled.div`
