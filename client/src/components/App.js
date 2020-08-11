@@ -11,6 +11,7 @@ import CheckoutPage from "./CheckoutConfirm/CheckoutPage";
 import GlobalStyles from "./GlobalStyles";
 import HomePage from "./HomePage";
 import ItemPage from "./ItemPage";
+import FourOhFourPage from "./FourOhFourPage";
 
 const App = () => {
   return (
@@ -28,6 +29,9 @@ const App = () => {
         </Route>
         <Route exact path="/checkout">
           <CheckoutPage></CheckoutPage>
+        </Route>
+        <Route exact path="/*">
+          <FourOhFourPage></FourOhFourPage>
         </Route>
       </Switch>
     </Router>
