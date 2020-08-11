@@ -1,0 +1,12 @@
+{
+  "justinthyme@mail.com": {
+    "email": "justinthyme@mail.com",
+    "password": "notsureif",
+    "orders": ["6789"]
+  },
+  "jonnyquest@mail.com": {
+    "email": "jonnyquest@mail.com",
+    "password": "welladdpasswords",
+    "orders": ["12345"]
+  }
+}

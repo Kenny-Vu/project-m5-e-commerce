@@ -12,6 +12,7 @@ import GlobalStyles from "./GlobalStyles";
 import HomePage from "./HomePage";
 import ItemPage from "./ItemPage";
 import FourOhFourPage from "./FourOhFourPage";
+import SignIn from "./SignIn";
 
 //KENNY-TEST
 import SearchPage from "./SearchPage";
@@ -25,19 +26,22 @@ const App = () => {
           <Redirect to="/items" />
         </Route>
         <Route exact path="/items">
-          <HomePage></HomePage>
+          <HomePage />
         </Route>
         <Route exact path="/items/:itemId">
-          <ItemPage></ItemPage>
+          <ItemPage />
         </Route>
         <Route exact path="/checkout">
-          <CheckoutPage></CheckoutPage>
+          <CheckoutPage />
         </Route>
         <Route exact path="/search">
           <SearchPage />
         </Route>
+        <Route exact path="/signin">
+          <SignIn />
+        </Route>
         <Route exact path="/*">
-          <FourOhFourPage></FourOhFourPage>
+          <FourOhFourPage />
         </Route>
       </Switch>
     </Router>
