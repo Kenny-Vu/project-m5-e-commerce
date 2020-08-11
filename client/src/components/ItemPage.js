@@ -30,9 +30,10 @@ const ItemPage = () => {
   }, []);
 
   console.log(items);
-  console.log(items);
+  // console.log(items);
 
   if (items) {
+    console.log("is this null? : ", items === null, items.body_location);
     return (
       <>
         <Header />
