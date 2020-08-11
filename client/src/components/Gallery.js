@@ -70,7 +70,9 @@ const GalleryGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 20%));
   grid-gap: 16px;
-
+  @media  (max-width:768px) {
+    grid-template-columns: repeat(1, minmax(0, 90%));
+  }
   /* border: pink dashed 3px; 
   display: grid;
   grid: repeat(3, auto) / repeat(5, auto);
