@@ -81,6 +81,7 @@ const CartHeader = styled.div`
   align-items: center;
   padding: 20px;
   border: solid grey 2px;
+  background-color: #f4f4fa;
 `;
 
 const CartTitle = styled.h2`
@@ -105,6 +106,7 @@ const BottomDiv = styled.div`
   justify-content: space-around;
   border-top: 1px solid grey;
   align-items: center;
+  background-color: #f4f4fa;
 `;
 
 const Total = styled.div`

@@ -74,11 +74,7 @@ const Header = () => {
             <Cart>
               {cart.map((item) => {
                 console.log(item);
-                return (
-                  <CartItem
-                    item={item}
-                  />
-                );
+                return <CartItem item={item} />;
               })}
             </Cart>
           </SideBar>
@@ -201,7 +197,6 @@ const CartJewel = styled.div`
 const CloseButtonDiv = styled.div`
   display: flex;
   justify-content: flex-end;
-  background-color: #adbdec;
   margin-top: 10px;
   font-size: 20px;
 `;
@@ -210,7 +205,6 @@ const CloseButton = styled.button`
   width: 30px;
   height: 30px;
   align-self: right;
-  background-color: #adbdec;
   cursor: pointer;
   &:active {
     transform: translateY(2px);
@@ -221,11 +215,8 @@ const SideBar = styled.div`
   display: flex;
   flex-direction: column;
   width: 500px;
-  height: 300%;
-  background-color: #adbdec;
   justify-content: space-between;
   padding: 0px 15px;
-  border: solid #df686861 5px;
 `;
 
 export default Header;
