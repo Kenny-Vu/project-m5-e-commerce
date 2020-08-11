@@ -2,53 +2,56 @@ import React from "react";
 import styled from "styled-components";
 import BuyButton from "./BuyButton";
 
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { requestItems, receiveItems, receiveItemsError } from "../actions";
 import {
-  getStoreItemArray,
-  getStoreItemArrayStatus,
-} from "../reducers/items-reducer";
+  requestCurrItem,
+  receiveCurrItem,
+  receiveCurrItemError,
+} from "../actions";
+import {
+  getcurrentItem,
+  getCurrentItemStatus,
+} from "../reducers/currItem-reducer";
 
 // displays single item page
 const ItemPage = () => {
   const dispatch = useDispatch();
-  const items = useSelector(getStoreItemArray);
-  const status = useSelector(getStoreItemArrayStatus);
+  const currItem = useSelector(getcurrentItem);
+  const status = useSelector(getCurrentItemStatus);
 
   const { itemId } = useParams();
 
   React.useEffect(() => {
-    dispatch(requestItems());
+    dispatch(requestCurrItem());
     fetch(`/items/${itemId}`)
       .then((res) =>
         res.json().then((data) => {
-          dispatch(receiveItems(data));
+          console.log(data);
+          return dispatch(receiveCurrItem(data));
         })
       )
-      .catch((err) => dispatch(receiveItemsError()));
+      .catch((err) => dispatch(receiveCurrItemError()));
   }, []);
 
-  console.log(items);
-  console.log(items);
-
-  if (items) {
+  if (currItem) {
     return (
       <ItemProfile>
-        <ItemName>{items.name}</ItemName>
-        <ItemPicture src={items.imageSrc}></ItemPicture>
-        <ItemPrice>{items.price}</ItemPrice>
-        <BodyLocation>{items.body_location}</BodyLocation>
-        <ItemCategory>{items.category}</ItemCategory>
-        <ItemStock>{items.numInStock} in Stock</ItemStock>
-        <BuyButton></BuyButton>
-        <button>
-          <a href="/items">return to Gallery</a>
-        </button>
+        <ItemName>{currItem.name}</ItemName>
+        <ItemPicture src={currItem.imageSrc}></ItemPicture>
+        <ItemPrice>{currItem.price}</ItemPrice>
+        <BodyLocation>{currItem.body_location}</BodyLocation>
+        <ItemCategory>{currItem.category}</ItemCategory>
+        <ItemStock>{currItem.numInStock} in Stock</ItemStock>
+        <BuyButton item={currItem}></BuyButton>
+
+        <Link to="/items">
+          <button>return to Gallery</button>
+        </Link>
       </ItemProfile>
     );
   }
-  return <div>loading</div>;
+  return <div>{status}</div>;
 };
 
 const ItemProfile = styled.div``;
