@@ -52,6 +52,11 @@ export default cartReducer;
 export const getCart = (state) => {
   return Object.values(state.cart.orderContent);
 };
+
+// get an object with all the order (cart) content
+export const getCartObj = (state) => {
+  return state.cart.orderContent;
+};
 // get the status
 export const getCartStatus = (state) => state.cart.status;
 

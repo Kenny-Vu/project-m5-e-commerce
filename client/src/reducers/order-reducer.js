@@ -6,16 +6,26 @@ const initialState = {
 const orderReducer = (state = initialState, action) => {
 
   switch (action.type) {
-      case 'CREATE_ORDER' : {
+      case 'POST_ORDER' : {
           return {
               ...state,
-              [action.order.id] : {
+              status: "waiting",
+              currentOrder : {
                   ...action.order
               }
           }
       }
-      case 'CANCEL_ORDER' : {
+      case 'COMPLETE_ORDER' : {
         return initialState
+    }
+      case 'ORDER_COMPLETION_ERROR' : {
+        return {
+          ...state,
+          status: "error",
+          currentOrder : {
+              ...action.order
+          }
+      }
     }
     default:
       return state;
@@ -29,4 +39,9 @@ export default orderReducer;
 // get the current order
 export const getOrder = (state) => {
     return state.order.currentOrder;
+  };
+  
+// get the order status
+  export const getOrderStatus = (state) => {
+    return state.order.status;
   };
