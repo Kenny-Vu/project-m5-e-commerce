@@ -4,14 +4,12 @@ import { getNumItemsCart, getCart } from "../reducers/cart-reducer";
 import styled from "styled-components";
 import Logo from "./Logo";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { GoSearch } from "react-icons/go";
 import { FaRegUser } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Drawer } from "@material-ui/core";
 import CartItem from "./CartItem";
 import Cart from "./Cart";
 import { Link } from "react-router-dom";
-
 import { SearchInput } from "./SearchInput";
 
 const Header = () => {
@@ -28,13 +26,7 @@ const Header = () => {
         </LinkDiv>
       </NameWrapper>
       <HeaderWrapper>
-        <NavBar>
-          <SearchInput placeholder="Search"></SearchInput>
-          <SearchIcon>
-            <GoSearch style={{ height: "25px", width: "25px" }} />
-          </SearchIcon>
-        </NavBar>
-
+        <SearchInput placeholder="Search"></SearchInput>
         <IconsDiv>
           <CartIcon
             disabled={numItemsCart === 0 ? true : false}
@@ -125,26 +117,6 @@ const HeaderWrapper = styled.div`
   align-items: center;
 `;
 
-const NavBar = styled.div`
-  width: 50%;
-  height: 50px;
-  border: 1px grey solid;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
-
-// const SearchInput = styled.input`
-//   border: none;
-//   width: 90%;
-//   height: 60%;
-//   &:focus {
-//     outline: none;
-//   }
-// `;
-
 const IconsDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -173,22 +145,6 @@ const CartIcon = styled.button`
     &:active {
       transform: none;
     }
-  }
-`;
-
-const SearchIcon = styled.div`
-  background-color: white;
-  padding: 8px;
-  cursor: pointer;
-  &:focus {
-    outline: none;
-  }
-  &:active {
-    transform: translateY(2px);
-  }
-  &:hover {
-    background-color: #d1c1f6;
-    border-radius: 50%;
   }
 `;
 

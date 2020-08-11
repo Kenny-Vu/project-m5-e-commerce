@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import BuyButton from "./BuyButton";
 import BackLink from "./BackLink";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header";
 import {
@@ -63,7 +63,7 @@ const ItemPage = () => {
               </ButtonDiv>
             </DescriptionDiv>
           </ItemProfile>
-          <BackButton to="/items"> return to Gallery </BackButton>
+          <BackLink> return to Gallery </BackLink>
         </MegaWrapper>
       </>
     );

@@ -65,12 +65,12 @@ const ParentDiv = styled.div`
   flex-direction: column;
 `;
 
-const GalleryGrid = styled.div`
+export const GalleryGrid = styled.div`
   padding: 20px 40px;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 20%));
   grid-gap: 16px;
-  @media  (max-width:768px) {
+  @media (max-width: 768px) {
     grid-template-columns: repeat(1, minmax(0, 90%));
   }
   /* border: pink dashed 3px; 
