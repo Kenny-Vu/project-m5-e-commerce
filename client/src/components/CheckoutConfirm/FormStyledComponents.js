@@ -8,8 +8,11 @@ export const Input = styled.input`
   display: block;
   min-width: 200px;
   margin-bottom: 10px;
-  box-sizing:border-box;
-  width:100%;
+  box-sizing: border-box;
+  width: 100%;
+  @media (max-width: 768px) {
+    min-width: 70vw;
+  }
 `;
 
 export const Label = styled.label`
@@ -24,12 +27,14 @@ export const Select = styled.select`
   display: block;
   min-width: 200px;
   margin-bottom: 10px;
-  width:100%;
-` 
+  width: 100%;
+  @media (max-width: 768px) {
+    min-width: 70vw;
+  }
+`;
 
 export const SectionTitle = styled.h2`
   font-weight: bold;
   font-size: 1.3rem;
   margin-bottom: 20px;
-
-` 
+`;

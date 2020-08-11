@@ -67,6 +67,15 @@ export const orderCompletionError = (order) => ({
   order,
 });
 
+export const requestUserData = (user) => ({
+  type: "REQUEST_USER_DATA",
+  user,
+});
+
+export const receiveUserData = () => ({
+  type: "Receive_USER_DATA",
+});
+
 //KENNY-TEST
 export const searchItem = (search, results) => ({
   type: "SEARCH_ITEM",

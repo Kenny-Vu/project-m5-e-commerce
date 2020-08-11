@@ -104,6 +104,9 @@ const StoreName = styled.h1`
   color: #adbdec;
   text-shadow: 1px 1px 3px #931f09;
   margin: 5px 70px;
+  @media (max-width: 768px) {
+    font-size: 2.8rem;
+  }
 `;
 
 const HeaderWrapper = styled.div`
@@ -187,9 +190,13 @@ const CloseButton = styled.button`
 const SideBar = styled.div`
   display: flex;
   flex-direction: column;
+  box-sizing:border-box;
   width: 500px;
   justify-content: space-between;
   padding: 0px 15px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export default Header;
