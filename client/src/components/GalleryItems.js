@@ -63,8 +63,6 @@ const PictureDiv = styled.div`
 `;
 
 const ItemImage = styled.img`
-  /* height: 15vh;
-  width: 10vw; */
   max-width: 150px;
   max-height: 150px;
   cursor: pointer;
