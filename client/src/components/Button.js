@@ -2,7 +2,9 @@ import styled from "styled-components";
 import React from "react";
 
 const ButtonWrapper = styled.button`
-  width: 100px;
+  min-height: 40px;
+  font-size: 0.9rem;
+  padding: 5px 9px;
   outline: none;
   border: none;
   background-color: #4848e5d6;
@@ -27,7 +29,6 @@ const ButtonWrapper = styled.button`
 `;
 
 const Button = ({ disabled, clickHandler, children }) => {
-
   return (
     <ButtonWrapper
       disabled={disabled}

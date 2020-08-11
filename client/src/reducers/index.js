@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 
 import cart from "./cart-reducer";
 import items from "./items-reducer";
+import currItem from "./currItem-reducer";
 import order from "./order-reducer";
 import companies from "./companies-reducer";
 import signin from "./signin-reducer";
@@ -13,6 +14,7 @@ export default combineReducers({
   order,
   cart,
   items,
+  currItem,
   companies,
   search,
   signin,

@@ -36,7 +36,10 @@ const Header = () => {
         </NavBar>
 
         <IconsDiv>
-          <CartIcon onClick={() => setSidebarVisible(!sidebarVisible)}>
+          <CartIcon
+            disabled={numItemsCart === 0 ? true : false}
+            onClick={() => setSidebarVisible(!sidebarVisible)}
+          >
             <AiOutlineShoppingCart
               style={{
                 height: "30px",
@@ -46,7 +49,9 @@ const Header = () => {
               }}
             />
           </CartIcon>
-          <CartJewel>{numItemsCart}</CartJewel>
+          <CartJewel className={numItemsCart === 0 && "disabled"}>
+            {numItemsCart}
+          </CartJewel>
           <FaRegUser
             style={{
               height: "25px",
@@ -146,9 +151,10 @@ const IconsDiv = styled.div`
   align-items: center;
 `;
 
-const CartIcon = styled.div`
+const CartIcon = styled.button`
   background-color: white;
   z-index: 1;
+  border-radius: 50%;
   cursor: pointer;
   &:focus {
     outline: none;
@@ -158,7 +164,15 @@ const CartIcon = styled.div`
   }
   &:hover {
     background-color: #d1c1f6;
-    border-radius: 50%;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    &:hover {
+      background-color: white;
+    }
+    &:active {
+      transform: none;
+    }
   }
 `;
 
@@ -191,6 +205,9 @@ const CartJewel = styled.div`
   margin-top: -25px;
   justify-content: center;
   z-index: 9;
+  &.disabled {
+    background-color: grey;
+  }
   /*display: none;*/ /*write confitional for when items in cart === true, then display*/
 `;
 

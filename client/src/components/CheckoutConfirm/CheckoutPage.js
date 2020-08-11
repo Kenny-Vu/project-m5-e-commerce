@@ -8,6 +8,7 @@ import OrderContents from "./OrderContents";
 import styled from "styled-components";
 import Header from "../Header";
 import Button from "../Button";
+import BackLink from "../BackLink";
 
 function CheckoutPage() {
   const dispatch = useDispatch();
@@ -114,6 +115,7 @@ function CheckoutPage() {
               setCardType={setCardType}
             />
             <PlaceOrderBtn onClick={sendOrder}>Place your order</PlaceOrderBtn>
+          <BackLink>Return to Gallery</BackLink>
           </Form>
         </FormWrapper>
       </Wrapper>

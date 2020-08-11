@@ -12,6 +12,21 @@ export const receiveItemsError = () => ({
   type: "RECEIVE_ITEMS_ERROR",
 });
 
+// get one item from the backend
+export const requestCurrItem = () => ({
+  type: "REQUEST_CURR_ITEM",
+});
+
+export const receiveCurrItem = (item) => ({
+  type: "RECEIVE_CURR_ITEM",
+  item,
+});
+
+export const receiveCurrItemError = () => ({
+  type: "RECEIVE_CURR_ITEM_ERROR",
+});
+
+
 // get companies from the backend
 export const requestCompanies = () => ({
   type: "REQUEST_COMPANIES",
