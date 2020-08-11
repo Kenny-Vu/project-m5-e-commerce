@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import React from "react";
 
-const Button = styled.button`
+const ButtonWrapper = styled.button`
   width: 100px;
   outline: none;
   border: none;
@@ -16,6 +17,26 @@ const Button = styled.button`
   &:active {
     transform: translateY(2px);
   }
+  &.disabled {
+    cursor: not-allowed;
+    background-color: grey;
+    &:active {
+      transform: none;
+    }
+  }
 `;
+
+const Button = ({ disabled, clickHandler, children }) => {
+
+  return (
+    <ButtonWrapper
+      disabled={disabled}
+      onClick={clickHandler}
+      className={disabled && "disabled"}
+    >
+      {children}
+    </ButtonWrapper>
+  );
+};
 
 export default Button;

@@ -1,11 +1,19 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../actions";
-import Button from './Button'
+import Button from "./Button";
 
-const BuyButton = ({item}) => {
+const BuyButton = ({ item }) => {
   const dispatch = useDispatch();
-  return <Button onClick={() => dispatch(addItem(item))}>Add to Cart</Button>;
+  console.log(item.numInStock);
+  return (
+    <Button
+      disabled={item.numInStock === 0 ? true : false}
+      clickHandler={() => dispatch(addItem(item))}
+    >
+      Add to Cart
+    </Button>
+  );
 };
 
 export default BuyButton;

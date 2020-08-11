@@ -12,12 +12,12 @@ import CartItem from "./CartItem";
 import Cart from "./Cart";
 import { Link } from "react-router-dom";
 
+import { SearchInput } from "./SearchInput";
+
 const Header = () => {
   const cart = useSelector(getCart);
-  console.log(cart);
   const [sidebarVisible, setSidebarVisible] = React.useState(false);
   const numItemsCart = useSelector(getNumItemsCart);
-  console.log(numItemsCart);
 
   return (
     <MainHeaderDiv>
@@ -131,14 +131,14 @@ const NavBar = styled.div`
   justify-content: center;
 `;
 
-const SearchInput = styled.input`
-  border: none;
-  width: 90%;
-  height: 60%;
-  &:focus {
-    outline: none;
-  }
-`;
+// const SearchInput = styled.input`
+//   border: none;
+//   width: 90%;
+//   height: 60%;
+//   &:focus {
+//     outline: none;
+//   }
+// `;
 
 const IconsDiv = styled.div`
   display: flex;

@@ -13,6 +13,9 @@ import HomePage from "./HomePage";
 import ItemPage from "./ItemPage";
 import FourOhFourPage from "./FourOhFourPage";
 
+//KENNY-TEST
+import SearchPage from "./SearchPage";
+
 const App = () => {
   return (
     <Router>
@@ -29,6 +32,9 @@ const App = () => {
         </Route>
         <Route exact path="/checkout">
           <CheckoutPage></CheckoutPage>
+        </Route>
+        <Route exact path="/search">
+          <SearchPage />
         </Route>
         <Route exact path="/*">
           <FourOhFourPage></FourOhFourPage>
