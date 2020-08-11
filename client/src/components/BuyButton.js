@@ -5,7 +5,7 @@ import Button from "./Button";
 
 const BuyButton = ({ item }) => {
   const dispatch = useDispatch();
-  console.log(item.numInStock);
+
   return (
     <Button
       disabled={item.numInStock === 0 ? true : false}

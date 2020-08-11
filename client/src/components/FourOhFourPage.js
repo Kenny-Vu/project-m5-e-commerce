@@ -218,7 +218,7 @@ const BadJeff = styled.img`
   transition: transform 1000ms ease-in-out;
   animation: ${Jabduction} 4s infinite linear;
   &:hover {
-    transform: translate(40px, 40px);
+    transform: translate(-40px, 40px);
   }
 `;
 
@@ -233,7 +233,7 @@ const King = styled.img`
   transition: transform 1000ms ease-in-out;
   animation: ${Kabduction} 4s infinite linear;
   &:hover {
-    transform: translate(40px, 40px);
+    transform: translate(-68px, 40px);
   }
 `;
 
