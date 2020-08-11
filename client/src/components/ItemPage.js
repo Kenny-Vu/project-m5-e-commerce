@@ -59,7 +59,7 @@ const ItemPage = () => {
               <ItemStock>{currItem.numInStock} in stock</ItemStock>
               <ItemPrice>{currItem.price}</ItemPrice>
               <ButtonDiv>
-                <BuyButton></BuyButton>
+                <BuyButton item={currItem}></BuyButton>
               </ButtonDiv>
             </DescriptionDiv>
           </ItemProfile>
