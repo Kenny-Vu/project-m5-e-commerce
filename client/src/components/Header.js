@@ -10,6 +10,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Drawer } from "@material-ui/core";
 import CartItem from "./CartItem";
 import Cart from "./Cart";
+import { Link } from "react-router-dom";
 
 import { SearchInput } from "./SearchInput";
 
@@ -22,7 +23,9 @@ const Header = () => {
     <MainHeaderDiv>
       <NameWrapper>
         <Logo />
-        <StoreName>NaN Athletics</StoreName>
+        <LinkDiv to="/items">
+          <StoreName>NaN Athletics</StoreName>
+        </LinkDiv>
       </NameWrapper>
       <HeaderWrapper>
         <NavBar>
@@ -73,10 +76,7 @@ const Header = () => {
                 console.log(item);
                 return (
                   <CartItem
-                    id={item.id}
-                    name={item.name}
-                    price={item.price}
-                    quantity={item.quantity}
+                    item={item}
                   />
                 );
               })}
@@ -87,6 +87,10 @@ const Header = () => {
     </MainHeaderDiv>
   );
 };
+
+const LinkDiv = styled(Link)`
+  text-decoration: none;
+`;
 
 const MainHeaderDiv = styled.div`
   display: flex;
@@ -149,6 +153,7 @@ const IconsDiv = styled.div`
 const CartIcon = styled.div`
   background-color: white;
   z-index: 1;
+  cursor: pointer;
   &:focus {
     outline: none;
   }
@@ -157,11 +162,14 @@ const CartIcon = styled.div`
   }
   &:hover {
     background-color: #d1c1f6;
+    border-radius: 50%;
   }
 `;
 
 const SearchIcon = styled.div`
   background-color: white;
+  padding: 8px;
+  cursor: pointer;
   &:focus {
     outline: none;
   }
@@ -170,6 +178,7 @@ const SearchIcon = styled.div`
   }
   &:hover {
     background-color: #d1c1f6;
+    border-radius: 50%;
   }
 `;
 
@@ -193,6 +202,8 @@ const CloseButtonDiv = styled.div`
   display: flex;
   justify-content: flex-end;
   background-color: #adbdec;
+  margin-top: 10px;
+  font-size: 20px;
 `;
 
 const CloseButton = styled.button`
@@ -200,16 +211,17 @@ const CloseButton = styled.button`
   height: 30px;
   align-self: right;
   background-color: #adbdec;
+  cursor: pointer;
 `;
 
 const SideBar = styled.div`
   display: flex;
   flex-direction: column;
   width: 500px;
-  height: 100%;
   background-color: #adbdec;
   justify-content: space-between;
   padding: 0px 15px;
+  border: solid grey 5px;
 `;
 
 export default Header;
