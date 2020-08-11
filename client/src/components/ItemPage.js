@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import BuyButton from "./BuyButton";
+import FourOhFourPage from "./FourOhFourPage";
 
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -48,7 +49,7 @@ const ItemPage = () => {
       </ItemProfile>
     );
   }
-  return <div>loading</div>;
+  return <FourOhFourPage></FourOhFourPage>;
 };
 
 const ItemProfile = styled.div``;

@@ -14,6 +14,7 @@ const {
   handleNewOrder,
   handleFourOhFour,
   handleItemsQuantities,
+  handleSignIn,
 } = require("./handlers");
 
 const PORT = 4000;
@@ -45,7 +46,7 @@ express()
   .get("/orders", handleGetAllOrders)
   .get("/orders/:orderId", handleGetOrder)
   .get("*", handleFourOhFour)
-
+  .post("/signin", handleSignIn) // Testing
   //POST
   .post("/orders", handleNewOrder) //creates a new order
 

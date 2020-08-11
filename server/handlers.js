@@ -1,6 +1,7 @@
 const items = require("./data/items.json");
 const companies = require("./data/companies.json");
 const orders = require("./data/orders.json");
+const customers = require("./data/customers.json");
 const { v4: uuidv4 } = require("uuid");
 const { searchById } = require("./helpers");
 //Handles 404 page
@@ -124,6 +125,24 @@ const handleNewOrder = (req, res) => {
   res.status(201).json({ orders });
 };
 
+//SIGN IN - POST
+const handleSignIn = (req, res) => {
+  const { email } = req.body;
+  console.log(req.body);
+  const validEmail = customers[`${email}`] ? true : false;
+  if (validEmail) {
+    res.status(201).json({
+      message: "Login successful!",
+      customer: {
+        email: customers[`${email}`].email,
+        customer: customers[`${email}`].orders,
+      },
+    });
+  } else {
+    res.status(401).json({ mesage: "Invalid email or password" });
+  }
+};
+
 module.exports = {
   handleGallery,
   handleGetItem,
@@ -134,4 +153,5 @@ module.exports = {
   handleNewOrder,
   handleFourOhFour,
   handleItemsQuantities,
+  handleSignIn,
 };
