@@ -4,6 +4,9 @@ import BuyButton from "./BuyButton";
 import { useHistory } from "react-router-dom";
 
 const GalleryItems = ({ item }) => {
+  // here number of items in stock updates when user add item to cart
+  // BE not updated yet but helps customer know how many items left she can buy
+  const [numItemInStock, setNumItemInStock] = React.useState(item.numInStock);
   const history = useHistory();
 
   // function for onclick of item to redirect to the specific items page
@@ -22,13 +25,17 @@ const GalleryItems = ({ item }) => {
       </ItemName>
       <BottomDiv>
         <Price>{item.price}</Price>
-        {item.numInStock >= 1 ? (
-          <Quantity> {item.numInStock} in stock</Quantity>
+        {numItemInStock >= 1 ? (
+          <Quantity> {numItemInStock} in stock</Quantity>
         ) : (
           <Quantity>Out of stock</Quantity>
         )}
 
-        <BuyButton item={item} />
+        <BuyButton
+          item={item}
+          numItemInStock={numItemInStock}
+          setNumItemInStock={setNumItemInStock}
+        />
       </BottomDiv>
     </ItemDiv>
   );
