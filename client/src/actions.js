@@ -47,3 +47,10 @@ export const cancelOrder = (order) => ({
   type: "CANCEL_ORDER",
   order,
 });
+
+//KENNY-TEST
+export const searchItem = (search, results) => ({
+  type: "SEARCH_ITEM",
+  search,
+  results,
+});

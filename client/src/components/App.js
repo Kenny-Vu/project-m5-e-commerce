@@ -12,6 +12,9 @@ import GlobalStyles from "./GlobalStyles";
 import HomePage from "./HomePage";
 import ItemPage from "./ItemPage";
 
+//KENNY-TEST
+import SearchPage from "./SearchPage";
+
 const App = () => {
   return (
     <Router>
@@ -29,6 +32,7 @@ const App = () => {
         <Route exact path="/checkout">
           <CheckoutPage></CheckoutPage>
         </Route>
+        <Route exact path="/search" component={SearchPage} />
       </Switch>
     </Router>
   );

@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { searchItem } from "../actions";
+import { useHistory } from "react-router-dom";
 export const SearchInput = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   //first we need a state to keep track of the userInput onChange
   //Reminder: input elements are controlled components have their own state managed by React
   const [userInput, setUserInput] = React.useState("");
@@ -19,16 +22,12 @@ export const SearchInput = () => {
     setUserInput(event.target.value);
   };
 
-  const handleInputSubmit = (event) => {
+  const handleInputSubmit = () => {
     //fires when user presses "enter"
-    if (event.key === "Enter") {
-      const searchResults = itemList.filter((item) => {
-        return item.name.includes(userInput);
-      });
+    return itemList.filter((item) => {
+      return item.name.toLowerCase().includes(userInput.toLowerCase());
       //either it rerenders the page or sends user to a results page
-      //use
-      console.log(searchResults);
-    }
+    });
   };
   //userInput should be at more than 2 letters?
   //can perhaps search by type
@@ -42,7 +41,13 @@ export const SearchInput = () => {
       onChange={(event) => {
         handleUserInput(event);
       }}
-      onKeyPress={(event) => handleInputSubmit(event)}
+      onKeyPress={(event) => {
+        if (event.key === "Enter") {
+          dispatch(searchItem(userInput, handleInputSubmit()));
+          history.push("/search"); //This will add a new endpoint to our history
+          history.goForward(); // and then we'll travel in time forward to that endpoint. Pretty cool eh?
+        }
+      }}
     ></SearchBar>
   );
 };
