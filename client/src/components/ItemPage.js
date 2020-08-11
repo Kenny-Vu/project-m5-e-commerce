@@ -62,7 +62,7 @@ const ItemPage = () => {
               </ButtonDiv>
             </DescriptionDiv>
           </ItemProfile>
-          <BackButton href="/items"> return to Gallery </BackButton>
+          <BackButton to="/items"> return to Gallery </BackButton>
         </MegaWrapper>
       </>
     );
@@ -106,8 +106,8 @@ const ImageDiv = styled.div`
 `;
 
 const ItemPicture = styled.img`
-  min-height: 350px;
-  min-width: 350px;
+  height: 350px;
+  width: 350px;
 `;
 
 const DescriptionDiv = styled.div`
