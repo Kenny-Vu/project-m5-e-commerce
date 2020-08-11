@@ -45,14 +45,14 @@ const Gallery = () => {
   return (
     <ParentDiv>
       {items ? (
-        <div>
+        <>
           <GalleryGrid>
             {items.filter(pageData).map((item) => (
               <GalleryItems key={item.id} item={item} />
             ))}
           </GalleryGrid>
           <Pagination postsPerPage={postsPerPage} totalPosts={items.length} />
-        </div>
+        </>
       ) : (
         <p>{status}</p>
       )}
@@ -63,6 +63,7 @@ const Gallery = () => {
 const ParentDiv = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 const GalleryGrid = styled.div`
@@ -70,8 +71,10 @@ const GalleryGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 20%));
   grid-gap: 16px;
-  @media  (max-width:768px) {
-    grid-template-columns: repeat(1, minmax(0, 90%));
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   /* border: pink dashed 3px; 
   display: grid;

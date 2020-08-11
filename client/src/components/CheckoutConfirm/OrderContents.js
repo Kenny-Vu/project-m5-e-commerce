@@ -19,7 +19,13 @@ const OrderContents = () => {
   );
 };
 
-const OrderWrapper = styled.div``;
+const OrderWrapper = styled.div`
+  
+  @media (max-width: 768px) {
+    width: 90%;
+    margin: 0 auto 40px;
+  }
+`;
 
 const OrderTotal = styled.div`
   font-weight: bold;

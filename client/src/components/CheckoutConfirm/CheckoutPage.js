@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCartObj } from "../../reducers/cart-reducer";
+import { getCartObj, getNumItemsCart } from "../../reducers/cart-reducer";
 import { postOrder, completeOrder, orderCompletionError } from "../../actions";
 import BillingPersonalInfo from "./BillingPersonalInfo";
 import PaymentInfo from "./PaymentInfo";
@@ -13,6 +13,7 @@ import BackLink from "../BackLink";
 function CheckoutPage() {
   const dispatch = useDispatch();
   const cart = useSelector(getCartObj);
+  const numberItems = useSelector(getNumItemsCart);
 
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
@@ -29,7 +30,6 @@ function CheckoutPage() {
 
   const sendOrder = () => {
     // create order object
-    // add zipcode
     const billingInfo = {
       firstName,
       lastName,
@@ -37,6 +37,7 @@ function CheckoutPage() {
       "telephone number": phone,
       address,
       country,
+      zipCode,
     };
     const paymentInfo = {
       CreditCardNumber: creditCardNumber,
@@ -84,38 +85,45 @@ function CheckoutPage() {
         <OrderContents />
         <FormWrapper>
           <Form>
-            <BillingPersonalInfo
-              firstName={firstName}
-              setFirstName={setFirstName}
-              lastName={lastName}
-              setLastName={setLastName}
-              email={email}
-              setEmail={setEmail}
-              phone={phone}
-              setPhone={setPhone}
-              address={address}
-              setAddress={setAddress}
-              zipCode={zipCode}
-              setZipCode={setZipCode}
-              country={country}
-              setCountry={setCountry}
-            />
-          </Form>
-          <Form>
-            <PaymentInfo
-              creditCardNumber={creditCardNumber}
-              setCreditCardNumber={setCreditCardNumber}
-              cvc={cvc}
-              setCVC={setCVC}
-              month={month}
-              setMonth={setMonth}
-              year={year}
-              setYear={setYear}
-              cardType={cardType}
-              setCardType={setCardType}
-            />
-            <PlaceOrderBtn onClick={sendOrder}>Place your order</PlaceOrderBtn>
-          <BackLink>Return to Gallery</BackLink>
+            <FormSection>
+              <BillingPersonalInfo
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                email={email}
+                setEmail={setEmail}
+                phone={phone}
+                setPhone={setPhone}
+                address={address}
+                setAddress={setAddress}
+                zipCode={zipCode}
+                setZipCode={setZipCode}
+                country={country}
+                setCountry={setCountry}
+              />
+            </FormSection>
+            <FormSection>
+              <PaymentInfo
+                creditCardNumber={creditCardNumber}
+                setCreditCardNumber={setCreditCardNumber}
+                cvc={cvc}
+                setCVC={setCVC}
+                month={month}
+                setMonth={setMonth}
+                year={year}
+                setYear={setYear}
+                cardType={cardType}
+                setCardType={setCardType}
+              />
+              <PlaceOrderBtn
+                disabled={numberItems === 0 ? true : false}
+                clickHandler={sendOrder}
+              >
+                Place your order
+              </PlaceOrderBtn>
+              <BackLink>Return to Gallery</BackLink>
+            </FormSection>
           </Form>
         </FormWrapper>
       </Wrapper>
@@ -125,12 +133,17 @@ function CheckoutPage() {
 
 const Form = styled.form`
   max-width: 700px;
-  margin: 20px auto;
+  margin: 20px  auto;
   display: flex;
-  flex-flow: column wrap;
-  margin-left: 10px;
-  margin-right: 10px;
+  flex-flow: row nowrap;
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const FormSection = styled.section`
   width: 50%;
+  margin: 0 30px;
 `;
 
 const PlaceOrderBtn = styled(Button)`
@@ -145,6 +158,10 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   padding-top: 30px;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
 `;
 
 const FormWrapper = styled.div`
@@ -155,6 +172,10 @@ const FormWrapper = styled.div`
   padding: 10px;
   border-radius: 5px;
   width: 50%;
+  @media (max-width: 768px) {
+    width: 90%;
+    margin: 0 auto;
+  }
 `;
 
 export default CheckoutPage;

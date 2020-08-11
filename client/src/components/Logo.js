@@ -16,6 +16,9 @@ const LogoDiv = styled(Link)``;
 const LogoImage = styled.img`
   max-height: 100px;
   max-width: 200px;
+  @media (max-width: 768px) {
+    display:none;
+  }
 `;
 
 export default Logo;

@@ -106,6 +106,7 @@ const ItemPicture = styled.img`
 `;
 
 const DescriptionDiv = styled.div`
+  background-color: white;
   display: flex;
   flex-direction: column;
   line-height: 2.5;
