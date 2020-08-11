@@ -70,47 +70,53 @@ function CheckoutPage() {
 
   // for testing purpose only, in order to confirm order
   React.useEffect(() => {
-      fetch("/orders")
-        .then((res) => res.json())
-        .then((data) => console.log(data));
-    },
-    []);
+    fetch("/orders")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }, []);
 
   return (
     <div>
       <Header />
-      <Form>
+
+      <Wrapper>
         <OrderContents />
-        <BillingPersonalInfo
-          firstName={firstName}
-          setFirstName={setFirstName}
-          lastName={lastName}
-          setLastName={setLastName}
-          email={email}
-          setEmail={setEmail}
-          phone={phone}
-          setPhone={setPhone}
-          address={address}
-          setAddress={setAddress}
-          zipCode={zipCode}
-          setZipCode={setZipCode}
-          country={country}
-          setCountry={setCountry}
-        />
-        <PaymentInfo
-          creditCardNumber={creditCardNumber}
-          setCreditCardNumber={setCreditCardNumber}
-          cvc={cvc}
-          setCVC={setCVC}
-          month={month}
-          setMonth={setMonth}
-          year={year}
-          setYear={setYear}
-          cardType={cardType}
-          setCardType={setCardType}
-        />
-        <PlaceOrderBtn onClick={sendOrder}>Place your order</PlaceOrderBtn>
-      </Form>
+        <FormWrapper>
+          <Form>
+            <BillingPersonalInfo
+              firstName={firstName}
+              setFirstName={setFirstName}
+              lastName={lastName}
+              setLastName={setLastName}
+              email={email}
+              setEmail={setEmail}
+              phone={phone}
+              setPhone={setPhone}
+              address={address}
+              setAddress={setAddress}
+              zipCode={zipCode}
+              setZipCode={setZipCode}
+              country={country}
+              setCountry={setCountry}
+            />
+          </Form>
+          <Form>
+            <PaymentInfo
+              creditCardNumber={creditCardNumber}
+              setCreditCardNumber={setCreditCardNumber}
+              cvc={cvc}
+              setCVC={setCVC}
+              month={month}
+              setMonth={setMonth}
+              year={year}
+              setYear={setYear}
+              cardType={cardType}
+              setCardType={setCardType}
+            />
+            <PlaceOrderBtn onClick={sendOrder}>Place your order</PlaceOrderBtn>
+          </Form>
+        </FormWrapper>
+      </Wrapper>
     </div>
   );
 }
@@ -120,10 +126,33 @@ const Form = styled.form`
   margin: 20px auto;
   display: flex;
   flex-flow: column wrap;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 50%;
 `;
 
 const PlaceOrderBtn = styled(Button)`
-  align-self: flex-end;
+  margin-top: 50px;
+  align-self: center;
+  font-size: 18px;
+  padding: 5px;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-top: 30px;
+`;
+
+const FormWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  border: solid #8080800f 1px;
+  box-shadow: 1px 1px 3px grey;
+  padding: 10px;
+  border-radius: 5px;
+  width: 50%;
 `;
 
 export default CheckoutPage;
