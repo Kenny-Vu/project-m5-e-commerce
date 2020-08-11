@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import BuyButton from "./BuyButton";
+import BackLink from "./BackLink";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header";
@@ -81,12 +82,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
-`;
-
-const BackButton = styled(Link)`
-  color: grey;
-  width: 120px;
-  justify-content: center;
 `;
 
 const ItemProfile = styled.div`

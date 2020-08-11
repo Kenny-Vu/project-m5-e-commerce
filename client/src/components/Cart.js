@@ -3,18 +3,18 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import BuyButton from "./BuyButton";
+import Button from "./Button";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
-import TextField from "@material-ui/core/TextField";
 
-import { getCart, getTotalPriceCart } from "../reducers/cart-reducer";
+import { getNumItemsCart, getTotalPriceCart } from "../reducers/cart-reducer";
 
 const Cart = ({ children }) => {
   const totalprice = useSelector(getTotalPriceCart);
+  const numberItems = useSelector(getNumItemsCart);
 
   return (
     <>
@@ -48,7 +48,9 @@ const Cart = ({ children }) => {
         <Total>Total: {totalprice} $</Total>
         <ButtonDiv>
           <Link to="/checkout">
-            <PurchaseButton>Proceed to checkout </PurchaseButton>
+            <Button disabled={numberItems === 0 ? true : false}>
+              Proceed to checkout
+            </Button>
           </Link>
         </ButtonDiv>
       </BottomDiv>
@@ -116,25 +118,5 @@ const Total = styled.div`
 `;
 
 const ButtonDiv = styled.div``;
-
-const PurchaseButton = styled.button`
-  background-color: #4848e5d6;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  margin: 20px;
-  cursor: pointer;
-  text-shadow: 1px 1px 3px black;
-  box-shadow: 2px 2px 5px grey;
-  &:hover {
-    background-color: blue;
-  }
-  &:active {
-    transform: translateY(2px);
-  }
-  &:focus {
-    outline: none;
-  }
-`;
 
 export default Cart;
