@@ -13,7 +13,6 @@ const {
   handleGetOrder,
   handleNewOrder,
   handleFourOhFour,
-  handleItemsQuantities,
   handleSignIn,
 } = require("./handlers");
 
@@ -46,11 +45,8 @@ express()
   .get("/orders", handleGetAllOrders)
   .get("/orders/:orderId", handleGetOrder)
   .get("*", handleFourOhFour)
-  .post("/signin", handleSignIn) // Testing
   //POST
   .post("/orders", handleNewOrder) //creates a new order
-
-  //PUT
-  .put("/items", handleItemsQuantities) // updates items.json
+  .post("/signin", handleSignIn) // authenticates user signin and sends back user info if authenticated
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));

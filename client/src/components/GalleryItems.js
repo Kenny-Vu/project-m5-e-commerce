@@ -2,11 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import BuyButton from "./BuyButton";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getCartObj } from "../reducers/cart-reducer";
 
 const GalleryItems = ({ item }) => {
   // here number of items in stock updates when user add item to cart
   // BE not updated yet but helps customer know how many items left she can buy
-  const [numItemInStock, setNumItemInStock] = React.useState(item.numInStock);
+  const cartObj = useSelector(getCartObj);
+  const numItemInStock = cartObj[item.id]
+    ? cartObj[item.id].numInStock - cartObj[item.id].quantity
+    : item.numInStock;
   const history = useHistory();
 
   // function for onclick of item to redirect to the specific items page
@@ -31,11 +36,7 @@ const GalleryItems = ({ item }) => {
           <Quantity>Out of stock</Quantity>
         )}
 
-        <BuyButton
-          item={item}
-          numItemInStock={numItemInStock}
-          setNumItemInStock={setNumItemInStock}
-        />
+        <BuyButton item={item} numItemInStock={numItemInStock} />
       </BottomDiv>
     </ItemDiv>
   );

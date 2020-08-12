@@ -28,12 +28,11 @@ const ItemPage = () => {
     fetch(`/items/${itemId}`)
       .then((res) =>
         res.json().then((data) => {
-          console.log(data);
           return dispatch(receiveCurrItem(data));
         })
       )
       .catch((err) => dispatch(receiveCurrItemError()));
-  }, []);
+  }, [dispatch,itemId]);
 
   if (currItem) {
     return (
