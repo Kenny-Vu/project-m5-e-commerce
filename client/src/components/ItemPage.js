@@ -4,6 +4,7 @@ import BuyButton from "./BuyButton";
 import BackLink from "./BackLink";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { getCartObj } from "../reducers/cart-reducer";
 import Header from "./Header";
 import {
   requestCurrItem,
@@ -23,6 +24,8 @@ const ItemPage = () => {
 
   const { itemId } = useParams();
 
+  const cartObj = useSelector(getCartObj);
+
   React.useEffect(() => {
     dispatch(requestCurrItem());
     fetch(`/items/${itemId}`)
@@ -32,7 +35,7 @@ const ItemPage = () => {
         })
       )
       .catch((err) => dispatch(receiveCurrItemError()));
-  }, [dispatch,itemId]);
+  }, [dispatch, itemId]);
 
   if (currItem) {
     return (
@@ -55,10 +58,22 @@ const ItemPage = () => {
                 This item is designed to be worn on your{" "}
                 {currItem.body_location.toLowerCase()}.
               </BodyLocation>
-              <ItemStock>{currItem.numInStock} in stock</ItemStock>
+              <ItemStock>
+                {cartObj[itemId]
+                  ? currItem.numInStock - cartObj[itemId].quantity
+                  : currItem.numInStock} 
+                &nbsp;in stock
+              </ItemStock>
               <ItemPrice>{currItem.price}</ItemPrice>
               <ButtonDiv>
-                <BuyButton item={currItem}></BuyButton>
+                <BuyButton
+                  numItemInStock={
+                    cartObj[itemId]
+                      ? currItem.numInStock - cartObj[itemId].quantity
+                      : currItem.numInStock
+                  }
+                  item={currItem}
+                ></BuyButton>
               </ButtonDiv>
             </DescriptionDiv>
           </ItemProfile>
