@@ -7,7 +7,7 @@ import Header from "./Header";
 
 const SearchPage = () => {
   const { search } = useSelector((state) => state);
-  search && console.log(search);
+
   return (
     <>
       <Header />
@@ -18,7 +18,6 @@ const SearchPage = () => {
         <GalleryGrid>
           {search.results.map((result) => (
             <GalleryItems key={result.id} item={result} />
-            // <div key={result.id}>{result.name}</div>
           ))}
         </GalleryGrid>
       )}

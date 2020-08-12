@@ -17,6 +17,7 @@ import Button from "../Button";
 import BackLink from "../BackLink";
 import Modal from "@material-ui/core/Modal";
 import checkmark from "../../assets/checkmark.png";
+import Spinner from "../Spinner";
 
 function CheckoutPage() {
   // BE message with order status
@@ -177,11 +178,15 @@ function CheckoutPage() {
         </FormWrapper>
       </Wrapper>
       <Modal open={openModal} onClose={handleClose}>
-        <ModalBody>
-          <Message status={status}>{message}</Message>
-          <Checkmark src={checkmark}></Checkmark>
-          <OrderBackLink>Return to Gallery</OrderBackLink>
-        </ModalBody>
+        {status === "waiting" ? (
+          <Spinner />
+        ) : (
+          <ModalBody>
+            <Message status={status}>{message}</Message>
+            <Checkmark src={checkmark}></Checkmark>
+            <OrderBackLink>Return to Gallery</OrderBackLink>
+          </ModalBody>
+        )}
       </Modal>
     </div>
   );
