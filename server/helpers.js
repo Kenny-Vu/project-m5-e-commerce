@@ -7,11 +7,11 @@ const searchById = (id, array) => {
   return array.find((element) => element.id === Number(id));
 };
 
-const simulateDelays = (res, data) => {
+const simulateDelays = (res, data, status) => {
   const maxDelay = 2000;
   const delay = Math.random() * maxDelay;
   setTimeout(() => {
-    res.status(200).json(data);
+    res.status(status).json(data);
   }, delay);
 };
 

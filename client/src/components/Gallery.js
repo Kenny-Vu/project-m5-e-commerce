@@ -46,7 +46,7 @@ const Gallery = () => {
 
   return (
     <ParentDiv>
-      {items ? (
+      {items && status==='idle' ? (
         <>
           <GalleryGrid>
             {items.filter(pageData).map((item) => (

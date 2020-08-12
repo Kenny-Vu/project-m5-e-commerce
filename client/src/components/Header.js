@@ -4,8 +4,8 @@ import { getNumItemsCart, getCart } from "../reducers/cart-reducer";
 import styled from "styled-components";
 import Logo from "./Logo";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { FaRegUser } from "react-icons/fa";
-import { GiHamburgerMenu } from "react-icons/gi";
+// import { FaRegUser } from "react-icons/fa";
+// import { GiHamburgerMenu } from "react-icons/gi";
 import { Drawer } from "@material-ui/core";
 import CartItem from "./CartItem";
 import Cart from "./Cart";
@@ -44,7 +44,7 @@ const Header = () => {
           <CartJewel className={numItemsCart === 0 && "disabled"}>
             {numItemsCart}
           </CartJewel>
-          <FaRegUser
+          {/* <FaRegUser
             style={{
               height: "25px",
               width: "25px",
@@ -59,7 +59,7 @@ const Header = () => {
               color: "grey",
               margin: "10px",
             }}
-          />
+          /> */}
         </IconsDiv>
         <Drawer anchor="right" open={sidebarVisible}>
           <SideBar>
@@ -112,7 +112,7 @@ const HeaderWrapper = styled.div`
   height: 60px;
   border-top: 1px grey solid;
   margin: 5px;
-  justify-content: space-evenly;
+  justify-content: inherit;
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -120,6 +120,7 @@ const HeaderWrapper = styled.div`
 `;
 
 const IconsDiv = styled.div`
+  margin: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -189,7 +190,7 @@ const CloseButton = styled.button`
 const SideBar = styled.div`
   display: flex;
   flex-direction: column;
-  box-sizing:border-box;
+  box-sizing: border-box;
   width: 500px;
   justify-content: space-between;
   padding: 0px 15px;

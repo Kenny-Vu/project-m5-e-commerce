@@ -52,12 +52,15 @@ const ItemDiv = styled.div`
   box-shadow: 1px 1px 5px #3f51b59c;
 `;
 
-const ItemName = styled.div`
+const ItemName = styled.span`
+display:inline-block;
   height: 33%;
   text-align: center;
+  vertical-align:center;
   margin-top: 5px;
   margin-bottom: 5px;
   line-height: 1.5;
+  font-size:0.93rem;
   cursor: pointer;
   &:hover {
     text-decoration: underline;
