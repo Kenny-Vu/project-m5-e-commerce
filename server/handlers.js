@@ -3,7 +3,7 @@ const companies = require("./data/companies.json");
 const orders = require("./data/orders.json");
 const customers = require("./data/customers.json");
 const { v4: uuidv4 } = require("uuid");
-const { searchById } = require("./helpers");
+const { searchById, simulateDelays } = require("./helpers");
 //Handles 404 page
 const handleFourOhFour = (req, res) => {
   res
@@ -18,7 +18,7 @@ const handleGallery = (req, res) => {
     item.companyName = company.name;
     return item; //The BE sends back each item with the companyName added so FE won't have to look for it
   });
-  res.status(200).json(itemList);
+  simulateDelays(res, itemList);
 };
 
 //SENDS INFO ABOUT A SPECIFIC ITEM USING THE ITEM'S ID
@@ -70,7 +70,6 @@ const handleNewOrder = (req, res) => {
     });
   });
 
-  console.log(orderContent)
   //If there's enough in storage then update the numInStorage in items.json and create new order
   if (hasEnoughInStorage) {
     const approvedItems = {};
@@ -96,7 +95,7 @@ const handleNewOrder = (req, res) => {
     };
     res.status(201).json({
       //the handler will always send a message with the amount ordered and the amount in stock
-      status:201,
+      status: 201,
       message: "Success! Order has been approved!",
       approvedItems: approvedItems,
       order: orders[`${orderId}`],
@@ -119,7 +118,7 @@ const handleNewOrder = (req, res) => {
       });
     });
     res.status(400).json({
-      status:400,
+      status: 400,
       message: "Failure. Not enough stock for items ordered",
       rejectedItems: rejectedItems,
     });
