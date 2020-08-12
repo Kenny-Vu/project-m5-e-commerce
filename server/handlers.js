@@ -66,9 +66,11 @@ const handleNewOrder = (req, res) => {
   //Next we verify if we have enough in stock of each item ordered
   const hasEnoughInStorage = orderContentArray.every((element) => {
     return items.some((item) => {
-      return item.id === element.id && item.numInStock > element.quantity;
+      return item.id === element.id && item.numInStock >= element.quantity;
     });
   });
+
+  console.log(orderContent)
   //If there's enough in storage then update the numInStorage in items.json and create new order
   if (hasEnoughInStorage) {
     const approvedItems = {};
@@ -94,6 +96,7 @@ const handleNewOrder = (req, res) => {
     };
     res.status(201).json({
       //the handler will always send a message with the amount ordered and the amount in stock
+      status:201,
       message: "Success! Order has been approved!",
       approvedItems: approvedItems,
       order: orders[`${orderId}`],
@@ -103,7 +106,10 @@ const handleNewOrder = (req, res) => {
     const rejectedItems = {};
     items.forEach((item) => {
       orderContentArray.forEach((itemToUpdate) => {
-        if (item.id === itemToUpdate.id) {
+        if (
+          item.id === itemToUpdate.id &&
+          item.numInStock < itemToUpdate.quantity
+        ) {
           rejectedItems[`${item.id}`] = {
             itemId: item.id,
             numInStock: item.numInStock,
@@ -113,6 +119,7 @@ const handleNewOrder = (req, res) => {
       });
     });
     res.status(400).json({
+      status:400,
       message: "Failure. Not enough stock for items ordered",
       rejectedItems: rejectedItems,
     });

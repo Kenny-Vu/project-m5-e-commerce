@@ -41,7 +41,7 @@ export const receiveCompaniesError = () => ({
   type: "RECEIVE_COMPANIES_ERROR",
 });
 
-// add and remove items from cart
+// add remove items and empty from cart
 export const addItem = (item) => ({
   type: "ADD_ITEM",
   item,
@@ -50,6 +50,10 @@ export const addItem = (item) => ({
 export const removeItem = (item) => ({
   type: "REMOVE_ITEM",
   item,
+});
+
+export const emptyCart = () => ({
+  type: "EMPTY_CART",
 });
 
 // post order to backend
