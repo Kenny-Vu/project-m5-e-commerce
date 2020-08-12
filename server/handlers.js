@@ -57,24 +57,22 @@ const handleGetOrder = (req, res) => {
   res.status(200).json(clientOrder);
 };
 
-//To follow REST principles, we will have to use a PUT method to update the item quantities in items.json
-//The FE should probably fetch this PUT request first to check if there's enough items in storage and then decide what to do next
-////This handler takes an object of objects as an arugment in the same format as "orderContent" in orders.json
-const handleItemsQuantities = (req, res) => {
-  const { orderContent } = req.body;
-  const rejectedItems = {};
-  const approvedItems = {};
+//CREATES NEW ORDER IN ORDERS.JSON AND UPDATES ITEM QUANTITIES IN ITEMS.JSON
+const handleNewOrder = (req, res) => {
+  const { billingInfo, paymentInfo, orderContent } = req.body;
 
-  //we need to first change the object into an array so we can loop through it
+  //we need to first convert the customer's order into an array so we can loop through each item
   const orderContentArray = Object.values(orderContent);
-  //We need to also check if we can actually sell the amount the client orders
+  //Next we verify if we have enough in stock of each item ordered
   const hasEnoughInStorage = orderContentArray.every((element) => {
     return items.some((item) => {
       return item.id === element.id && item.numInStock > element.quantity;
     });
   });
-  //If there's enough in storage then update the numInStorage in items.json
+  //If there's enough in storage then update the numInStorage in items.json and create new order
   if (hasEnoughInStorage) {
+    const approvedItems = {};
+    // updating the item quantities and adding approved items to approvedItems variable so we can send this info to the FE
     items.forEach((item) => {
       orderContentArray.forEach((itemToUpdate) => {
         if (item.id === itemToUpdate.id) {
@@ -87,13 +85,22 @@ const handleItemsQuantities = (req, res) => {
         }
       });
     });
-    res.status(200).json({
+    //// Then we create the new order in orders.json
+    const orderId = uuidv4().toString(); //generates new random order Id
+    orders[`${orderId}`] = {
+      billingInfo: billingInfo,
+      paymentInfo: paymentInfo,
+      orderContent: orderContent,
+    };
+    res.status(201).json({
       //the handler will always send a message with the amount ordered and the amount in stock
-      message: "Success! All item quantities have been updated!",
+      message: "Success! Order has been approved!",
       approvedItems: approvedItems,
+      order: orders[`${orderId}`],
     });
-    //if there's not enough in storage then notify the FE
+    //if there's not enough in storage then show the FE the amount in stock vs amount ordered
   } else {
+    const rejectedItems = {};
     items.forEach((item) => {
       orderContentArray.forEach((itemToUpdate) => {
         if (item.id === itemToUpdate.id) {
@@ -112,23 +119,9 @@ const handleItemsQuantities = (req, res) => {
   }
 };
 
-//RECEIVES CLIENT INFOS FROM THE CHECKOUT FORM AND CREATES A NEW ORDER IN ORDER.JSON
-//For now, this info sent in the fetch request has to be in the same format as the orders.json file
-const handleNewOrder = (req, res) => {
-  const { billingInfo, paymentInfo, orderContent } = req.body;
-  const orderId = uuidv4().toString(); //generates new order Id
-  orders[`${orderId}`] = {
-    billingInfo: billingInfo,
-    paymentInfo: paymentInfo,
-    orderContent: orderContent,
-  };
-  res.status(201).json({ orders });
-};
-
-//SIGN IN - POST
+//SIGN IN
 const handleSignIn = (req, res) => {
   const { email } = req.body;
-  console.log(req.body);
   const validEmail = customers[`${email}`] ? true : false;
   if (validEmail) {
     res.status(201).json({
@@ -152,6 +145,5 @@ module.exports = {
   handleGetOrder,
   handleNewOrder,
   handleFourOhFour,
-  handleItemsQuantities,
   handleSignIn,
 };
