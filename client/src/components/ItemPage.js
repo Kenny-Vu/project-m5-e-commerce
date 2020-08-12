@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import BuyButton from "./BuyButton";
 import BackLink from "./BackLink";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header";
 import {
@@ -101,8 +101,8 @@ const ImageDiv = styled.div`
 `;
 
 const ItemPicture = styled.img`
-  min-height: 350px;
-  min-width: 350px;
+  height: 350px;
+  width: 350px;
 `;
 
 const DescriptionDiv = styled.div`

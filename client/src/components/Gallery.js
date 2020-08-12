@@ -66,7 +66,7 @@ const ParentDiv = styled.div`
   justify-content: space-between;
 `;
 
-const GalleryGrid = styled.div`
+export const GalleryGrid = styled.div`
   padding: 20px 40px;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 20%));
