@@ -18,7 +18,7 @@ const handleGallery = (req, res) => {
     item.companyName = company.name;
     return item; //The BE sends back each item with the companyName added so FE won't have to look for it
   });
-  simulateDelays(res, itemList);
+  simulateDelays(res, itemList, 200);
 };
 
 //SENDS INFO ABOUT A SPECIFIC ITEM USING THE ITEM'S ID
@@ -93,13 +93,14 @@ const handleNewOrder = (req, res) => {
       paymentInfo: paymentInfo,
       orderContent: orderContent,
     };
-    res.status(201).json({
+    simulateDelays(res, {
       //the handler will always send a message with the amount ordered and the amount in stock
       status: 201,
       message: "Success! Order has been approved!",
       approvedItems: approvedItems,
       order: orders[`${orderId}`],
-    });
+    }, 201)
+
     //if there's not enough in storage then show the FE the amount in stock vs amount ordered
   } else {
     const rejectedItems = {};
@@ -130,13 +131,17 @@ const handleSignIn = (req, res) => {
   const { email } = req.body;
   const validEmail = customers[`${email}`] ? true : false;
   if (validEmail) {
-    res.status(201).json({
-      message: "Login successful!",
-      customer: {
-        email: customers[`${email}`].email,
-        customer: customers[`${email}`].orders,
+    simulateDelays(
+      res,
+      {
+        message: "Login successful!",
+        customer: {
+          email: customers[`${email}`].email,
+          customer: customers[`${email}`].orders,
+        },
       },
-    });
+      201
+    );
   } else {
     res.status(401).json({ mesage: "Invalid email or password" });
   }
