@@ -11,6 +11,8 @@ import styled from "styled-components";
 import Pagination from "./Pagination";
 import GalleryItems from "./GalleryItems";
 
+import Spinner from "./Spinner";
+
 // displays gallery GalleryItems, postsperpage = amount of items per page
 const Gallery = () => {
   const dispatch = useDispatch();
@@ -54,7 +56,7 @@ const Gallery = () => {
           <Pagination postsPerPage={postsPerPage} totalPosts={items.length} />
         </>
       ) : (
-        <p>{status}</p>
+        <Spinner />
       )}
     </ParentDiv>
   );
