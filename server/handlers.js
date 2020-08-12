@@ -106,7 +106,10 @@ const handleNewOrder = (req, res) => {
     const rejectedItems = {};
     items.forEach((item) => {
       orderContentArray.forEach((itemToUpdate) => {
-        if (item.id === itemToUpdate.id) {
+        if (
+          item.id === itemToUpdate.id &&
+          item.numInStock < itemToUpdate.quantity
+        ) {
           rejectedItems[`${item.id}`] = {
             itemId: item.id,
             numInStock: item.numInStock,
