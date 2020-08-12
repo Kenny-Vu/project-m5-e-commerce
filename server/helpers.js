@@ -8,7 +8,7 @@ const searchById = (id, array) => {
 };
 
 const simulateDelays = (res, data, status) => {
-  const maxDelay = 3000;
+  const maxDelay = 2000;
   const delay = Math.random() * maxDelay;
   setTimeout(() => {
     res.status(status).json(data);
