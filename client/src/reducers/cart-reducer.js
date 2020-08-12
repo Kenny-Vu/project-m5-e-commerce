@@ -1,3 +1,5 @@
+import { ReactReduxContext } from "react-redux";
+
 const initialState = {
   orderContent: {},
   status: "idle",
@@ -38,6 +40,9 @@ const cartReducer = (state = initialState, action) => {
           },
         };
       }
+    }
+    case 'EMPTY_CART': {
+      return initialState
     }
     default:
       return state;

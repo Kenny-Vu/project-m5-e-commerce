@@ -1,7 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCartObj, getNumItemsCart } from "../../reducers/cart-reducer";
-import { postOrder, completeOrder, orderCompletionError } from "../../actions";
+import { getOrderStatus } from "../../reducers/order-reducer";
+import {
+  postOrder,
+  completeOrder,
+  orderCompletionError,
+  emptyCart,
+} from "../../actions";
 import BillingPersonalInfo from "./BillingPersonalInfo";
 import PaymentInfo from "./PaymentInfo";
 import OrderContents from "./OrderContents";
@@ -11,9 +17,13 @@ import Button from "../Button";
 import BackLink from "../BackLink";
 
 function CheckoutPage() {
+  // BE message with order status
+  const [message, setMessage] = React.useState("");
+
   const dispatch = useDispatch();
   const cart = useSelector(getCartObj);
   const numberItems = useSelector(getNumItemsCart);
+  const status = useSelector(getOrderStatus);
 
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
@@ -28,7 +38,8 @@ function CheckoutPage() {
   const [cvc, setCVC] = React.useState("");
   const [cardType, setCardType] = React.useState("");
 
-  const sendOrder = () => {
+  const sendOrder = (e) => {
+    e.preventDefault();
     // create order object
     const billingInfo = {
       firstName,
@@ -45,7 +56,7 @@ function CheckoutPage() {
       CVC: cvc,
     };
     const orderContent = {
-      cart,
+      ...cart,
     };
     const order = {
       billingInfo,
@@ -62,12 +73,21 @@ function CheckoutPage() {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        return dispatch(completeOrder());
+      .then((res) => {
+        return res.json();
       })
-      .then((err) => dispatch(orderCompletionError(order)));
+      .then((data) => {
+        setMessage(data.message);
+        if (data.status === 201) {
+          dispatch(completeOrder());
+          dispatch(emptyCart());
+        } else {
+          dispatch(orderCompletionError(order));
+        }
+      })
+      .catch((err) => {
+        dispatch(orderCompletionError(order));
+      });
   };
 
   // for testing purpose only, in order to confirm order
@@ -82,9 +102,13 @@ function CheckoutPage() {
       <Header />
 
       <Wrapper>
-        <OrderContents />
+        <div>
+          <OrderContents />
+          <Message status={status}>{message}</Message>
+        </div>
+
         <FormWrapper>
-          <Form>
+          <Form onSubmit={(e) => sendOrder(e)}>
             <FormSection>
               <BillingPersonalInfo
                 firstName={firstName}
@@ -116,10 +140,7 @@ function CheckoutPage() {
                 cardType={cardType}
                 setCardType={setCardType}
               />
-              <PlaceOrderBtn
-                disabled={numberItems === 0 ? true : false}
-                clickHandler={sendOrder}
-              >
+              <PlaceOrderBtn disabled={numberItems === 0 ? true : false}>
                 Place your order
               </PlaceOrderBtn>
               <BackLink>Return to Gallery</BackLink>
@@ -131,9 +152,15 @@ function CheckoutPage() {
   );
 }
 
+const Message = styled.div`
+  color: ${(props) => {
+    return props.status === "error" ? "red" : "black";
+  }};
+  margin: 20px 0;
+`;
 const Form = styled.form`
   max-width: 700px;
-  margin: 20px  auto;
+  margin: 20px auto;
   display: flex;
   flex-flow: row nowrap;
   @media (max-width: 768px) {
