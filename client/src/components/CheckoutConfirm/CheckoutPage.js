@@ -15,11 +15,13 @@ import styled from "styled-components";
 import Header from "../Header";
 import Button from "../Button";
 import BackLink from "../BackLink";
+import Modal from "@material-ui/core/Modal";
+import checkmark from "../../assets/checkmark.png";
 
 function CheckoutPage() {
   // BE message with order status
   const [message, setMessage] = React.useState("");
-
+  const [openModal, setOpenModal] = React.useState(false);
   const dispatch = useDispatch();
   const cart = useSelector(getCartObj);
   const numberItems = useSelector(getNumItemsCart);
@@ -37,6 +39,30 @@ function CheckoutPage() {
   const [year, setYear] = React.useState("");
   const [cvc, setCVC] = React.useState("");
   const [cardType, setCardType] = React.useState("");
+
+  const handleOpen = () => {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !phone ||
+      !address ||
+      !zipCode ||
+      !country ||
+      !creditCardNumber ||
+      !month ||
+      !year ||
+      !cvc ||
+      !cardType
+    ) {
+      return;
+    }
+    setOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
 
   const sendOrder = (e) => {
     e.preventDefault();
@@ -104,7 +130,6 @@ function CheckoutPage() {
       <Wrapper>
         <div>
           <OrderContents />
-          <Message status={status}>{message}</Message>
         </div>
 
         <FormWrapper>
@@ -140,7 +165,10 @@ function CheckoutPage() {
                 cardType={cardType}
                 setCardType={setCardType}
               />
-              <PlaceOrderBtn disabled={numberItems === 0 ? true : false}>
+              <PlaceOrderBtn
+                disabled={numberItems === 0 ? true : false}
+                clickHandler={handleOpen}
+              >
                 Place your order
               </PlaceOrderBtn>
               <BackLink>Return to Gallery</BackLink>
@@ -148,6 +176,13 @@ function CheckoutPage() {
           </Form>
         </FormWrapper>
       </Wrapper>
+      <Modal open={openModal} onClose={handleClose}>
+        <ModalBody>
+          <Message status={status}>{message}</Message>
+          <Checkmark src={checkmark}></Checkmark>
+          <OrderBackLink>Return to Gallery</OrderBackLink>
+        </ModalBody>
+      </Modal>
     </div>
   );
 }
@@ -156,8 +191,40 @@ const Message = styled.div`
   color: ${(props) => {
     return props.status === "error" ? "red" : "black";
   }};
-  margin: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
 `;
+
+const Checkmark = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
+const ModalBody = styled.div`
+  justify-content: center;
+  align-items: center;
+  line-height: 2;
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 180px;
+  position: relative;
+  top: 30%;
+  left: 40%;
+  background-color: white;
+  border: solid black 3px;
+`;
+
+const OrderBackLink = styled(BackLink)`
+  color: black;
+  font-size: 16px;
+  justify-self: center;
+  margin: 15px;
+`;
+
 const Form = styled.form`
   max-width: 700px;
   margin: 20px auto;
@@ -170,7 +237,7 @@ const Form = styled.form`
 
 const FormSection = styled.section`
   width: 50%;
-  margin: 0 30px;
+  margin: 0 10px;
 `;
 
 const PlaceOrderBtn = styled(Button)`
@@ -192,13 +259,11 @@ const Wrapper = styled.div`
 `;
 
 const FormWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
   border: solid #8080800f 1px;
   box-shadow: 1px 1px 3px grey;
   padding: 10px;
   border-radius: 5px;
-  width: 50%;
+  width: 40%;
   @media (max-width: 768px) {
     width: 90%;
     margin: 0 auto;
