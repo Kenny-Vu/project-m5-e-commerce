@@ -36,7 +36,7 @@ opacity:100%
 const Words = styled.div`
   font-size: 4em;
   padding-bottom: 15px;
-  animation: ${WordsFade} 1s;
+  animation: ${WordsFade} 1.5s;
 `;
 
 const TwoFade = keyframes`
@@ -75,7 +75,7 @@ const GalleryFade = keyframes`
   0% {
     opacity: 0%
   }
-  80% {
+  70% {
     opacity: 0%
   }
   }
