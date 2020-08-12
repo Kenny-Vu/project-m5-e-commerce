@@ -17,8 +17,8 @@ const Gallery = () => {
   const items = useSelector(getStoreItemArray);
   const status = useSelector(getStoreItemArrayStatus);
 
-  const [postsPerPage, setPostsPerPage] = React.useState(30); //postPerpage could be changed by user. We will see
-
+  // const [postsPerPage, setPostsPerPage] = React.useState(30); //postPerpage could be changed by user. We will see
+  const postsPerPage = 30;
   const query = new URLSearchParams(useLocation().search);
   const currentPage = query.get("pg") ? query.get("pg") : 1;
 
@@ -31,7 +31,7 @@ const Gallery = () => {
         })
       )
       .catch((err) => dispatch(receiveItemsError()));
-  }, []);
+  }, [dispatch]);
 
   // pageData handles displaying only 30items at a time on the page
   function pageData(item, index) {
