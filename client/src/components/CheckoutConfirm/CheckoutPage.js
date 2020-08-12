@@ -132,8 +132,9 @@ function CheckoutPage() {
 }
 
 const Form = styled.form`
-  max-width: 700px;
-  margin: 20px  auto;
+  padding: 15px;
+  /* max-width: 700px;
+  margin: 20px auto; */
   display: flex;
   flex-flow: row nowrap;
   @media (max-width: 768px) {
@@ -143,7 +144,7 @@ const Form = styled.form`
 
 const FormSection = styled.section`
   width: 50%;
-  margin: 0 30px;
+  margin: 0 10px;
 `;
 
 const PlaceOrderBtn = styled(Button)`
@@ -165,13 +166,11 @@ const Wrapper = styled.div`
 `;
 
 const FormWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
   border: solid #8080800f 1px;
   box-shadow: 1px 1px 3px grey;
   padding: 10px;
   border-radius: 5px;
-  width: 50%;
+  width: 40%;
   @media (max-width: 768px) {
     width: 90%;
     margin: 0 auto;
