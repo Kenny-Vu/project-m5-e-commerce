@@ -13,6 +13,7 @@ import HomePage from "./HomePage";
 import ItemPage from "./ItemPage";
 import FourOhFourPage from "./FourOhFourPage";
 import SignIn from "./SignIn";
+import VisualHomePage from "./VisualHomePage";
 
 //KENNY-TEST
 import SearchPage from "./SearchPage";
@@ -23,7 +24,7 @@ const App = () => {
       <GlobalStyles />
       <Switch>
         <Route exact path="/">
-          <Redirect to="/items" />
+          <VisualHomePage />
         </Route>
         <Route exact path="/items">
           <HomePage />
