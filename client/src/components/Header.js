@@ -69,9 +69,8 @@ const Header = () => {
               </CloseButton>
             </CloseButtonDiv>
             <Cart>
-              {cart.map((item) => {
-                console.log(item);
-                return <CartItem item={item} />;
+              {cart.map((item, index) => {
+                return <CartItem key={index} item={item} />;
               })}
             </Cart>
           </SideBar>

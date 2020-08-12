@@ -3,9 +3,7 @@ import styled from "styled-components";
 import { GoTrashcan } from "react-icons/go";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
-import { useSelector, useDispatch } from "react-redux";
-import { getCart } from "../reducers/cart-reducer";
-import { getNumItemsCart } from "../reducers/cart-reducer";
+import { useDispatch } from "react-redux";
 import { removeItem } from "../actions";
 
 const CartItem = ({ item }) => {
