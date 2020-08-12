@@ -14,6 +14,7 @@ import ItemPage from "./ItemPage";
 import FourOhFourPage from "./FourOhFourPage";
 import SignIn from "./SignIn";
 import VisualHomePage from "./VisualHomePage";
+import Spinner from "./Spinner";
 
 //KENNY-TEST
 import SearchPage from "./SearchPage";
