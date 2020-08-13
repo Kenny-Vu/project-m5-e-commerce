@@ -13,6 +13,9 @@ import GalleryItems from "./GalleryItems";
 import DropDown from "./DropDown";
 
 import Spinner from "./Spinner";
+//KENNY-TEST
+import ErrorPage from "./ErrorPage";
+
 // displays gallery GalleryItems, postsperpage = amount of items per page
 const Gallery = () => {
   const dispatch = useDispatch();
@@ -32,7 +35,9 @@ const Gallery = () => {
           dispatch(receiveItems(data));
         })
       )
-      .catch((err) => dispatch(receiveItemsError()));
+      .catch((err) => {
+        return dispatch(receiveItemsError());
+      });
   }, [dispatch]);
 
   // pageData handles displaying only 30items at a time on the page
@@ -50,7 +55,7 @@ const Gallery = () => {
 
   return (
     <ParentDiv>
-      {items && status==='idle' ? (
+      {items && status === "idle" && (
         <>
           <DropDown title="Category" items={items} />
           <GalleryGrid>
@@ -60,9 +65,9 @@ const Gallery = () => {
           </GalleryGrid>
           <Pagination postsPerPage={postsPerPage} totalPosts={items.length} />
         </>
-      ) : (
-        <p>{status}</p>
       )}
+      {status === "loading" && <Spinner />}
+      {status === "error" && <ErrorPage />}
     </ParentDiv>
   );
 };
