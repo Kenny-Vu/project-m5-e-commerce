@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCartObj } from "../reducers/cart-reducer";
 import Header from "./Header";
+import Spinner from "./Spinner";
+import ErrorPage from "./ErrorPage";
 import {
   requestCurrItem,
   receiveCurrItem,
@@ -37,11 +39,11 @@ const ItemPage = () => {
       .catch((err) => dispatch(receiveCurrItemError()));
   }, [dispatch, itemId]);
 
-  if (currItem) {
-    return (
-      <>
-        <Header />
+  return (
+    <>
+      <Header />
 
+      {currItem && status === "idle" && (
         <MegaWrapper>
           <Wrapper>
             <ItemName>{currItem.name}</ItemName>
@@ -61,7 +63,7 @@ const ItemPage = () => {
               <ItemStock>
                 {cartObj[itemId]
                   ? currItem.numInStock - cartObj[itemId].quantity
-                  : currItem.numInStock} 
+                  : currItem.numInStock}
                 &nbsp;in stock
               </ItemStock>
               <ItemPrice>{currItem.price}</ItemPrice>
@@ -79,10 +81,11 @@ const ItemPage = () => {
           </ItemProfile>
           <BackLink> return to Gallery </BackLink>
         </MegaWrapper>
-      </>
-    );
-  }
-  return <div>{status}</div>;
+      )}
+      {status === "loading" && <Spinner />}
+      {status === "error" && <ErrorPage />}
+    </>
+  );
 };
 
 const MegaWrapper = styled.div`
