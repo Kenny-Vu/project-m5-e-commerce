@@ -93,13 +93,17 @@ const handleNewOrder = (req, res) => {
       paymentInfo: paymentInfo,
       orderContent: orderContent,
     };
-    simulateDelays(res, {
-      //the handler will always send a message with the amount ordered and the amount in stock
-      status: 201,
-      message: "Success! Order has been approved!",
-      approvedItems: approvedItems,
-      order: orders[`${orderId}`],
-    }, 201)
+    simulateDelays(
+      res,
+      {
+        //the handler will always send a message with the amount ordered and the amount in stock
+        status: 201,
+        message: "Success! Order has been approved!",
+        approvedItems: approvedItems,
+        order: orders[`${orderId}`],
+      },
+      201
+    );
 
     //if there's not enough in storage then show the FE the amount in stock vs amount ordered
   } else {

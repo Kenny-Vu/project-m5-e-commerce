@@ -13,6 +13,9 @@ import GalleryItems from "./GalleryItems";
 import DropDown from "./DropDown";
 
 import Spinner from "./Spinner";
+//KENNY-TEST
+import ErrorPage from "./ErrorPage";
+
 // displays gallery GalleryItems, postsperpage = amount of items per page
 const Gallery = () => {
   const dispatch = useDispatch();
@@ -34,7 +37,9 @@ const Gallery = () => {
           dispatch(receiveItems(data));
         })
       )
-      .catch((err) => dispatch(receiveItemsError()));
+      .catch((err) => {
+        return dispatch(receiveItemsError());
+      });
   }, [dispatch]);
 
   React.useEffect(() => {
@@ -75,8 +80,8 @@ const Gallery = () => {
           />
         </>
       )}
-      {status === "loading" && ( <Spinner />)}
-      {status === "error" && ( <div>Error</div>)}
+      {status === "loading" && <Spinner />}
+      {status === "error" && <ErrorPage />}
     </ParentDiv>
   );
 };

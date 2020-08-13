@@ -1,6 +1,6 @@
-//Helper functions here that could potentially be reused
-
-const items = require("./data/items.json");
+// This file is for Helper functions here that could potentially be reused
+const maxDelay = 2000;
+const errorRate = 0.05;
 
 //function to find specific item or company by passing the id and the array of objects as arguments(e.g. --> searchById(item.id,items))
 const searchById = (id, array) => {
@@ -8,10 +8,12 @@ const searchById = (id, array) => {
 };
 
 const simulateDelays = (res, data, status) => {
-  const maxDelay = 2000;
   const delay = Math.random() * maxDelay;
+  const error = errorRate >= Math.random();
   setTimeout(() => {
-    res.status(status).json(data);
+    if (error) {
+      throw new Error(error);
+    } else res.status(status).json(data);
   }, delay);
 };
 
