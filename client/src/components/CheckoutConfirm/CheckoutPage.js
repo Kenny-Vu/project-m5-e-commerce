@@ -183,7 +183,7 @@ function CheckoutPage() {
         ) : (
           <ModalBody>
             <Message status={status}>{message}</Message>
-            <Checkmark src={checkmark}></Checkmark>
+            {status === "idle" && <Checkmark src={checkmark}></Checkmark>}
             <OrderBackLink>Return to Gallery</OrderBackLink>
           </ModalBody>
         )}
