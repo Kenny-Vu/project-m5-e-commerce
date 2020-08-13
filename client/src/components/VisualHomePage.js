@@ -61,7 +61,6 @@ const Wordstwo = styled.div`
   padding-bottom: 15px;
   animation: ${TwoFade} 3s;
   font-family: 'Heebo', sans-serif;
-  font-style:extra-bold;
   font-weight:900;
 `;
 

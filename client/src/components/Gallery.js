@@ -10,9 +10,9 @@ import {
 import styled from "styled-components";
 import Pagination from "./Pagination";
 import GalleryItems from "./GalleryItems";
+import DropDown from "./DropDown";
 
 import Spinner from "./Spinner";
-
 // displays gallery GalleryItems, postsperpage = amount of items per page
 const Gallery = () => {
   const dispatch = useDispatch();
@@ -44,10 +44,15 @@ const Gallery = () => {
     }
   }
 
+  const SortCategory = () => {
+    return console.log("hahahahahah");
+  };
+
   return (
     <ParentDiv>
       {items && status==='idle' ? (
         <>
+          <DropDown title="Category" items={items} />
           <GalleryGrid>
             {items.filter(pageData).map((item) => (
               <GalleryItems key={item.id} item={item} />
@@ -56,7 +61,7 @@ const Gallery = () => {
           <Pagination postsPerPage={postsPerPage} totalPosts={items.length} />
         </>
       ) : (
-        <Spinner />
+        <p>{status}</p>
       )}
     </ParentDiv>
   );
