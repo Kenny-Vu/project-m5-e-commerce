@@ -55,7 +55,7 @@ opacity:100%
 const Wordstwo = styled.div`
   font-size: 4em;
   padding-bottom: 15px;
-  animation: ${TwoFade} 2.5s;
+  animation: ${TwoFade} 3s;
 `;
 
 const Motto = styled.div`
@@ -90,7 +90,7 @@ const GalleryButton = styled.button`
   border-radius: 40px;
   z-index: 1;
   background-color: white;
-  animation: ${GalleryFade} 3.5s;
+  animation: ${GalleryFade} 4.5s;
   color: purple;
   a {
     text-decoration: none;

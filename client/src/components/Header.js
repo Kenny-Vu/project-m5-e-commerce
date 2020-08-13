@@ -189,7 +189,7 @@ const CloseButton = styled.button`
 const SideBar = styled.div`
   display: flex;
   flex-direction: column;
-  box-sizing:border-box;
+  box-sizing: border-box;
   width: 500px;
   justify-content: space-between;
   padding: 0px 15px;
