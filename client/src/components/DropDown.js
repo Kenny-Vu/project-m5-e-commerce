@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 export default function DropDown({ items, category, setCategory }) {
   // Gets all seven categories
@@ -6,8 +7,8 @@ export default function DropDown({ items, category, setCategory }) {
   console.log(category);
 
   return (
-    <div>
-      <select
+    <Wrapper>
+      <Select
         id="category"
         name="category"
         onChange={(e) => setCategory(e.target.value)}
@@ -17,8 +18,24 @@ export default function DropDown({ items, category, setCategory }) {
             {cat}
           </option>
         ))}
-      </select>
-      <button onClick={() => setCategory("")}>X cancel</button>
-    </div>
+      </Select>
+      <Cancel onClick={() => setCategory("")}>x</Cancel>
+    </Wrapper>
   );
 }
+
+const Cancel = styled.button`
+  padding: 0 5px;
+  border: 1px solid rgb(204, 204, 204); // grey
+  background-color: white;
+  border-radius: 3px;
+  margin-left: 10px;
+  cursor: pointer;
+`;
+const Select = styled.select`
+  border: 1px solid rgb(204, 204, 204); // grey
+`;
+
+const Wrapper = styled.div`
+  margin: 0 auto;
+`;
