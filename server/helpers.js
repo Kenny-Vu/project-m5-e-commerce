@@ -7,4 +7,12 @@ const searchById = (id, array) => {
   return array.find((element) => element.id === Number(id));
 };
 
-module.exports = { searchById };
+const simulateDelays = (res, data, status) => {
+  const maxDelay = 2000;
+  const delay = Math.random() * maxDelay;
+  setTimeout(() => {
+    res.status(status).json(data);
+  }, delay);
+};
+
+module.exports = { searchById, simulateDelays };

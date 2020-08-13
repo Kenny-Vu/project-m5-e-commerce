@@ -50,7 +50,7 @@ const Gallery = () => {
 
   return (
     <ParentDiv>
-      {items ? (
+      {items && status==='idle' ? (
         <>
           <DropDown title="Category" items={items} />
           <GalleryGrid>
