@@ -4,20 +4,25 @@ import styled from "styled-components";
 export default function DropDown({ items, category, setCategory }) {
   // Gets all seven categories
   const unique = [...new Set(items.map((item) => item.category))];
-  console.log(category);
 
   return (
     <Wrapper>
       <Select
         id="category"
         name="category"
+        value={category}
         onChange={(e) => setCategory(e.target.value)}
       >
-        {unique.map((cat) => (
-          <option key={cat} className="category">
-            {cat}
-          </option>
-        ))}
+        <option key={"all"} className="category" value="">
+          All
+        </option>
+        {unique
+          .sort()
+          .map((cat) => (
+            <option key={cat} className="category" value={cat}>
+              {cat}
+            </option>
+          ))}
       </Select>
       <Cancel onClick={() => setCategory("")}>x</Cancel>
     </Wrapper>
