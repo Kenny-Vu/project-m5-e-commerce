@@ -21,6 +21,8 @@ const Gallery = () => {
   const dispatch = useDispatch();
   const items = useSelector(getStoreItemArray);
   const status = useSelector(getStoreItemArrayStatus);
+  const [category, setCategory] = React.useState("");
+  const [filteredItems, setfilteredItems] = React.useState("");
 
   // const [postsPerPage, setPostsPerPage] = React.useState(30); //postPerpage could be changed by user. We will see
   const postsPerPage = 30;
@@ -40,6 +42,14 @@ const Gallery = () => {
       });
   }, [dispatch]);
 
+  React.useEffect(() => {
+    if (category) {
+      setfilteredItems(items.filter((item) => item.category === category));
+    } else {
+      setfilteredItems(items);
+    }
+  }, [items, category]);
+
   // pageData handles displaying only 30items at a time on the page
   function pageData(item, index) {
     const indexOfLastPost = currentPage * postsPerPage;
@@ -49,21 +59,25 @@ const Gallery = () => {
     }
   }
 
-  const SortCategory = () => {
-    return console.log("hahahahahah");
-  };
-
   return (
     <ParentDiv>
-      {items && status === "idle" && (
+      {filteredItems && status === "idle" && (
         <>
-          <DropDown title="Category" items={items} />
+          <DropDown
+            title="Category"
+            items={items}
+            category={category}
+            setCategory={setCategory}
+          />
           <GalleryGrid>
-            {items.filter(pageData).map((item) => (
+            {filteredItems.filter(pageData).map((item) => (
               <GalleryItems key={item.id} item={item} />
             ))}
           </GalleryGrid>
-          <Pagination postsPerPage={postsPerPage} totalPosts={items.length} />
+          <Pagination
+            postsPerPage={postsPerPage}
+            totalPosts={filteredItems.length}
+          />
         </>
       )}
       {status === "loading" && <Spinner />}
