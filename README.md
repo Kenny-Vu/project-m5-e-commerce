@@ -8,7 +8,7 @@ In order to spice up the thing, we came up with a name for our fake brand, NaN A
 
 Super Fox, our super spinner is visible throughout the demo gif (see below). We added a setTimeout() to the backend to simulate response delay so we could enjoy the presence of our little friend bit longer.
 
-So.. without much further ado
+So.. without further ado
 
 
 <img src="./__documentation/assets/navigation.gif" style="width: 100%;" />
