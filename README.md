@@ -4,7 +4,7 @@ We used :
 - Redux 
 - Node.js.
 
-In order to spice up the thing, we came up with a name for our fake brand, NaN Athletics. We gave ourselves a brand ambassador, Mike Tyson and mascot, Super Fox. We also added a household favorite, Tiger King, to our collection of inspiring stuff we wanted to use for the website. Because, you know, the more, the merrier.
+In order to spice up the thing, we came up with a name for our fake brand, NaN Athletics. We gave ourselves a brand ambassador, Mike Tyson and a mascot, Super Fox. We also added a household favorite, Tiger King, to our collection of inspiring stuff we wanted to use for the website. Because, you know, the more, the merrier.
 
 Super Fox, our super spinner is visible throughout the demo gif (see below). We added a setTimeout() to the backend to simulate response delay so we could enjoy the presence of our little friend bit longer.
 
