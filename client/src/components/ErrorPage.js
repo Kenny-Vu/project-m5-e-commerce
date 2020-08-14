@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import Spritesheet from "react-responsive-spritesheet";
+import Spritesheet from "react-responsive-spritesheet"; //api to make dealing with sprites easier
 import Player from "../assets/Player.png";
 import PinkDonut from "../assets/pink-donut.png";
 import ChocolateDonut from "../assets/chocolate-donut.png";
 
+//This error page is a clicker game kinda like the cookie clicker.
 const ErrorPage = () => {
-  const [caloriesBurned, setCaloriesBurned] = React.useState(0);
+  const [caloriesBurned, setCaloriesBurned] = React.useState(0); //we'll store the points here
   return (
     <>
       <Wrapper>
@@ -22,14 +23,15 @@ const ErrorPage = () => {
             image={Player}
             widthFrame={64}
             heightFrame={64}
-            steps={60}
+            steps={60} // total number of frames on the spritesheet
             fps={10}
             loop={false}
             autoplay={false}
             backgroundSize={"cover"}
             onClick={(Spritesheet) => {
-              Spritesheet.goToAndPlay(24);
-              Spritesheet.setEndAt(28);
+              //when clicked the sprite will swing his sword
+              Spritesheet.goToAndPlay(24); //starting sprite frame
+              Spritesheet.setEndAt(28); //end frame
               setCaloriesBurned(caloriesBurned + 10);
             }}
           />
