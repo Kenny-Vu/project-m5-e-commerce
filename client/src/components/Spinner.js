@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Spritesheet from "react-responsive-spritesheet";
+import Spritesheet from "react-responsive-spritesheet"; //api to make dealing with sprites easier
 import Player from "../assets/Player.png";
 
+//Component for loading screen
 const Spinner = () => {
   return (
     <Wrapper>
@@ -11,11 +12,11 @@ const Spinner = () => {
         image={Player}
         widthFrame={64}
         heightFrame={64}
-        startAt={0}
-        endAt={5}
-        steps={60}
+        startAt={0} //starting frame
+        endAt={5} //end frame
+        steps={60} // total number of frames on the spritesheet
         fps={10}
-        loop={true}
+        loop={true} // make the sprite animation loop so the sprite character runs forever
         backgroundSize={"cover"}
       />
       <span>Exercising...</span>
