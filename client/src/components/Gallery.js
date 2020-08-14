@@ -37,11 +37,12 @@ const Gallery = () => {
           if (res.ok) {
             dispatch(receiveItems(data));
           } else {
-            dispatch(receiveItemsError());
+            throw new Error
           }
         })
       )
       .catch((err) => {
+        console.log(err)
         return dispatch(receiveItemsError());
       });
   }, [dispatch]);
