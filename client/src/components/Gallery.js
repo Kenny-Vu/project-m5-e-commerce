@@ -34,7 +34,11 @@ const Gallery = () => {
     fetch("/items")
       .then((res) =>
         res.json().then((data) => {
-          dispatch(receiveItems(data));
+          if (res.ok) {
+            dispatch(receiveItems(data));
+          } else {
+            dispatch(receiveItemsError());
+          }
         })
       )
       .catch((err) => {

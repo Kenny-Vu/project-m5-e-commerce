@@ -12,8 +12,9 @@ const simulateDelays = (res, data, status) => {
   const error = errorRate >= Math.random();
   setTimeout(() => {
     if (error) {
-      throw new Error(error);
-    } else res.status(status).json(data);
+      status = 500;
+    }
+    res.status(status).json(data);
   }, delay);
 };
 
